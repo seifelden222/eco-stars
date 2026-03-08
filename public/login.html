@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;family=Cairo:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#21c488",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#12201b",
+                    },
+                    fontFamily: {
+                        "display": ["Cairo", "Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        .star-pattern {
+            background-image: radial-gradient(circle at 2px 2px, #21c488 1px, transparent 0);
+            background-size: 40px 40px;
+            background-repeat: repeat;
+            opacity: 0.1;
+        }
+        .floating-star {
+            position: absolute;
+            color: #21c488;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 star-pattern pointer-events-none"></div>
+<span class="material-symbols-outlined floating-star top-[10%] left-[15%] !text-4xl">stars</span>
+<span class="material-symbols-outlined floating-star top-[20%] right-[10%] !text-2xl">stars</span>
+<span class="material-symbols-outlined floating-star bottom-[15%] left-[10%] !text-3xl">stars</span>
+<span class="material-symbols-outlined floating-star bottom-[25%] right-[20%] !text-5xl">stars</span>
+<span class="material-symbols-outlined floating-star top-[50%] right-[5%] !text-3xl">stars</span>
+<main class="relative z-10 w-full max-w-md p-6">
+<div class="bg-white dark:bg-slate-900 rounded-lg shadow-xl border border-slate-100 dark:border-slate-800 p-8 md:p-10 text-center">
+<div class="mb-8 flex flex-col items-center">
+<img src="assets/img/log.png" alt="" style="width: 250px;">
+<p class="text-slate-500 dark:text-slate-400 mt-2 font-bold">مرحباً بك يا بطل! جاهز للمغامرة؟</p>
+</div>
+<form class="space-y-6 text-right" action="home.html">
+<div class="space-y-2">
+<label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mr-1" for="username">اسم المستخدم</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">person</span>
+<input class="w-full pr-12 pl-4 py-4 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl focus:ring-2 focus:ring-primary text-lg font-medium transition-all" id="username" name="username" placeholder="اكتب اسمك هنا" required="" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mr-1" for="password">كلمة المرور</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">lock</span>
+<input class="w-full pr-12 pl-4 py-4 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl focus:ring-2 focus:ring-primary text-lg transition-all" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+<div class="flex justify-start">
+<a class="text-sm font-bold text-primary hover:underline" href="#">نسيت كلمة المرور؟</a>
+</div>
+</div>
+<button class="w-full py-4 bg-primary text-white rounded-2xl text-xl font-black shadow-lg shadow-primary/30 hover:bg-primary/90 transform transition-active active:scale-[0.98] mt-4 flex items-center justify-center gap-2" type="submit">
+<span>تسجيل الدخول</span>
+<span class="material-symbols-outlined">auto_awesome</span>
+</button>
+</form>
+<div class="mt-10 pt-8 border-t border-slate-100 dark:border-slate-800">
+<p class="text-slate-600 dark:text-slate-400 font-bold">
+                    ليس لديك حساب؟ 
+                    <a class="text-primary hover:underline mr-1" href="signup.html">إنشاء حساب جديد</a>
+</p>
+</div>
+</div>
+
+</main>
+
+</body></html>

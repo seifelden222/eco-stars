@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#22c55e",
+                        "background-light": "#f8fafc",
+                        "sidebar-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Cairo", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.75rem",
+                        "lg": "1.5rem",
+                        "xl": "2.5rem",
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        .sidebar-item-active {
+            @apply bg-primary/10 text-primary border-l-4 border-primary;
+        }
+        .stat-card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+        }
+    </style>
+</head>
+<body class="bg-background-light text-slate-900 min-h-screen flex">
+<aside class="w-64 bg-white border-l border-slate-200 flex flex-col fixed inset-y-0 right-0 z-50">
+<div class="p-6 flex items-center gap-3 border-b border-slate-50">
+<img src="../assets/img/log.png" alt="">
+</div>
+<nav class="flex-1 px-4 py-6 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl sidebar-item-active font-bold" href="home.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span>الرئيسية</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-700 transition-all font-bold" href="usersmanagements.html">
+<span class="material-symbols-outlined">group</span>
+<span>المستخدمين</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-700 transition-all font-bold" href="subjectsmanagements.html">
+<span class="material-symbols-outlined">menu_book</span>
+<span>الدورات التدريبية</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-700 transition-all font-bold" href="reports.html">
+<span class="material-symbols-outlined">monitoring</span>
+<span>التقارير</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-700 transition-all font-bold mt-auto" href="systemsettings.html">
+<span class="material-symbols-outlined">settings</span>
+<span>الإعدادات</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-100">
+<div class="flex items-center gap-3 p-3 bg-slate-50 rounded-2xl">
+<div class="size-10 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Admin Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh3pma56kS6QvgdEk1TRyKx-GycCGE_UYij1v8gc7pQj9vLGAZXrZoT3rnm3sj34rj2c0u3FYinWZIIg_WORBzQqEJ3mTcuffl1eOlQKxVIzHD4gFxg4XqLdJ8ofhXjhM37RHBgN2lZfYvLXNwlqkn3IVypshy4wzdzahpJ0QDrRCrPOUC6CXEzmVNC-A6TYKOLKqaJyeHF1yeUIXporHX45RjpR3ZlmbwOP1xCCxYGVpPK6UxHKVBDvoFCAqVq1kCr_RK-_NJF-k"/>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold text-slate-800">أحمد محمد</p>
+<p class="text-[10px] text-slate-500">مدير النظام</p>
+</div>
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-xl">logout</span>
+</button>
+</div>
+</div>
+</aside>
+<main class="flex-1 mr-64 p-8">
+<header class="flex justify-between items-center mb-8">
+<div>
+<h1 class="text-2xl font-bold text-slate-800">مرحباً بك، أحمد!</h1>
+<p class="text-slate-500 mt-1">إليك نظرة سريعة على أداء المنصة اليوم</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-slate-500 hover:bg-white hover:shadow-sm rounded-xl transition-all">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 left-2 size-2 bg-red-500 rounded-full border-2 border-background-light"></span>
+</button>
+<div class="h-8 w-px bg-slate-200"></div>
+<div class="flex items-center gap-2 bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+<span class="text-sm font-bold text-slate-600">24 مايو 2024</span>
+</div>
+</div>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="bg-white p-6 rounded-2xl stat-card-shadow border border-slate-50 flex items-center gap-4">
+<div class="size-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">school</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-500">إجمالي الطلاب</p>
+<p class="text-2xl font-black text-slate-800">١,٢٨٤</p>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl stat-card-shadow border border-slate-50 flex items-center gap-4">
+<div class="size-14 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">record_voice_over</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-500">إجمالي المعلمين</p>
+<p class="text-2xl font-black text-slate-800">٥٦</p>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl stat-card-shadow border border-slate-50 flex items-center gap-4">
+<div class="size-14 bg-green-50 text-primary rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">auto_stories</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-500">الدورات النشطة</p>
+<p class="text-2xl font-black text-slate-800">٣٢</p>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl stat-card-shadow border border-slate-50 flex items-center gap-4">
+<div class="size-14 bg-yellow-50 text-yellow-600 rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">stars</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-500">النقاط الممنوحة</p>
+<p class="text-2xl font-black text-slate-800">٤٥,٢٠٠</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 bg-white p-8 rounded-2xl stat-card-shadow border border-slate-50">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-lg font-bold text-slate-800">نمو المستخدمين</h3>
+<select class="bg-slate-50 border-none text-xs font-bold text-slate-500 rounded-lg focus:ring-0">
+<option>آخر ٦ أشهر</option>
+<option>آخر سنة</option>
+</select>
+</div>
+<div class="h-64 flex items-end justify-between gap-4 px-2">
+<div class="w-full bg-slate-50 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary/20 rounded-t-lg transition-all h-[40%] group-hover:bg-primary/40"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-slate-400 font-bold">يناير</span>
+</div>
+<div class="w-full bg-slate-50 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary/20 rounded-t-lg transition-all h-[55%] group-hover:bg-primary/40"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-slate-400 font-bold">فبراير</span>
+</div>
+<div class="w-full bg-slate-50 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary/20 rounded-t-lg transition-all h-[45%] group-hover:bg-primary/40"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-slate-400 font-bold">مارس</span>
+</div>
+<div class="w-full bg-slate-50 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary/20 rounded-t-lg transition-all h-[75%] group-hover:bg-primary/40"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-slate-400 font-bold">أبريل</span>
+</div>
+<div class="w-full bg-slate-50 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all h-[90%]"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-slate-800 font-bold">مايو</span>
+</div>
+<div class="w-full bg-slate-50 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-slate-200 rounded-t-lg transition-all h-[10%] group-hover:bg-slate-300"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-slate-400 font-bold">يونيو</span>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-2xl stat-card-shadow border border-slate-50">
+<h3 class="text-lg font-bold text-slate-800 mb-6">آخر النشاطات</h3>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="size-10 bg-green-100 text-primary rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">person_add</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-800">انضمام طالب جديد</p>
+<p class="text-xs text-slate-500 mt-0.5">سارة أحمد انضمت إلى كوكب العلوم</p>
+<p class="text-[10px] text-slate-400 mt-1">منذ ٥ دقائق</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="size-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">workspace_premium</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-800">إنجاز جديد</p>
+<p class="text-xs text-slate-500 mt-0.5">حصل يوسف على وسام "المكتشف الصغير"</p>
+<p class="text-[10px] text-slate-400 mt-1">منذ ١٢ دقيقة</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="size-10 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">edit_document</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-800">تحديث دورة</p>
+<p class="text-xs text-slate-500 mt-0.5">تم إضافة درس جديد في دورة الفضاء</p>
+<p class="text-[10px] text-slate-400 mt-1">منذ ٣٠ دقيقة</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="size-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">quiz</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-800">اختبار جديد</p>
+<p class="text-xs text-slate-500 mt-0.5">قام المعلم خالد بنشر اختبار الذكاء</p>
+<p class="text-[10px] text-slate-400 mt-1">منذ ساعة</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 py-3 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-xl text-sm font-bold transition-all">
+                    عرض جميع النشاطات
+                </button>
+</div>
+</div>
+<div class="mt-8 bg-white rounded-2xl stat-card-shadow border border-slate-50 overflow-hidden">
+<div class="p-8 flex justify-between items-center border-b border-slate-50">
+<h3 class="text-lg font-bold text-slate-800">المسجلون مؤخراً</h3>
+<button class="text-sm font-bold text-primary hover:underline">مشاهدة الكل</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-right">
+<thead class="bg-slate-50 text-slate-500 text-sm font-bold">
+<tr>
+<th class="px-8 py-4">اسم الطالب</th>
+<th class="px-8 py-4">المستوى</th>
+<th class="px-8 py-4">تاريخ التسجيل</th>
+<th class="px-8 py-4">الحالة</th>
+<th class="px-8 py-4">الإجراءات</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50">
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-8 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-100"></div>
+<span class="font-bold text-slate-700 text-sm">ياسين علي</span>
+</div>
+</td>
+<td class="px-8 py-4 text-sm text-slate-600">المبتدئ</td>
+<td class="px-8 py-4 text-sm text-slate-600">٢٤ مايو ٢٠٢٤</td>
+<td class="px-8 py-4">
+<span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-[10px] font-bold">نشط</span>
+</td>
+<td class="px-8 py-4">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">more_horiz</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-8 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-100"></div>
+<span class="font-bold text-slate-700 text-sm">ليلى محمود</span>
+</div>
+</td>
+<td class="px-8 py-4 text-sm text-slate-600">المتوسط</td>
+<td class="px-8 py-4 text-sm text-slate-600">٢٣ مايو ٢٠٢٤</td>
+<td class="px-8 py-4">
+<span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-[10px] font-bold">نشط</span>
+</td>
+<td class="px-8 py-4">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">more_horiz</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-8 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-100"></div>
+<span class="font-bold text-slate-700 text-sm">عمر إبراهيم</span>
+</div>
+</td>
+<td class="px-8 py-4 text-sm text-slate-600">المتقدم</td>
+<td class="px-8 py-4 text-sm text-slate-600">٢٢ مايو ٢٠٢٤</td>
+<td class="px-8 py-4">
+<span class="px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-[10px] font-bold">معلق</span>
+</td>
+<td class="px-8 py-4">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">more_horiz</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+
+</body></html>

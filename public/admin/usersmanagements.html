@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#22c55e",
+                        "background-light": "#f8fafc",
+                        "admin-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Cairo", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.75rem",
+                        "lg": "1.5rem",
+                        "xl": "2.5rem",
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        .sidebar-item-active {
+            @apply bg-primary/10 text-primary border-l-4 border-primary;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #22c55e44;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #22c55e88;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-slate-900 min-h-screen flex overflow-hidden">
+<aside class="w-72 bg-white border-l border-slate-200 flex flex-col h-screen shrink-0 relative z-20">
+<div class="p-6 flex items-center gap-3 border-b border-slate-50">
+<img src="../assets/img/log.png" alt="">
+</div>
+<nav class="flex-1 py-6 overflow-y-auto custom-scrollbar px-3 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl  text-slate-500 hover:bg-slate-50 hover:text-slate-700 transition-all font-bold" href="home.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span>الرئيسية</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl sidebar-item-active font-bold" href="usersmanagements.html">
+<span class="material-symbols-outlined">group</span>
+<span>المستخدمين</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-700 transition-all font-bold" href="subjectsmanagements.html">
+<span class="material-symbols-outlined">menu_book</span>
+<span>الدورات التدريبية</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-700 transition-all font-bold" href="reports.html">
+<span class="material-symbols-outlined">monitoring</span>
+<span>التقارير</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-700 transition-all font-bold mt-auto" href="systemsettings.html">
+<span class="material-symbols-outlined">settings</span>
+<span>الإعدادات</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-50">
+<div class="bg-slate-50 rounded-2xl p-4 flex items-center gap-3">
+<div class="size-10 rounded-full bg-slate-200 flex-shrink-0 border-2 border-white overflow-hidden">
+<img alt="Admin" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANgNhubUn6VN_rd1koKUrmTdGldQUutLl2DKL9nKhsntbxv4rW6pa2BRcS00co6jXlBylnHZqgt_VW5zgS8L3Ettjk7zo2i_aqY0csWTGA7dW1vNX0uJiCQl84nz-8fWthK5_eOn7KGseBTQdxDkbLkkOGwMlE8_QECmTTvkp6EofqRTi26uQ0ggHx2-VIUbkIteq5CZ9VD_tdybxubMhGYtfYNczJTX4pTfe2TuulWgYzAIkk1W72sYG4LOZtgavp9oac0zFHADc"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-xs font-black text-slate-800 truncate">أحمد الإداري</p>
+<p class="text-[10px] font-bold text-slate-500">مشرف عام</p>
+</div>
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined">logout</span>
+</button>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col h-screen overflow-hidden">
+<header class="h-20 bg-white border-b border-slate-200 px-8 flex items-center justify-between shrink-0">
+<div class="flex items-center gap-4">
+<h2 class="text-xl font-black text-slate-800">إدارة المستخدمين</h2>
+<div class="flex items-center gap-2 bg-slate-50 px-3 py-1 rounded-full">
+<span class="size-2 bg-primary rounded-full"></span>
+<span class="text-xs font-bold text-slate-600">١,٢٥٤ مستخدم نشط</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="size-10 flex items-center justify-center rounded-xl bg-slate-50 text-slate-600 hover:bg-slate-100 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 left-2 size-2 bg-red-500 rounded-full border-2 border-white"></span>
+</button>
+<button class="h-11 px-4 bg-primary text-white rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:bg-green-600 transition-all">
+<span class="material-symbols-outlined">person_add</span>
+<span>إضافة مستخدم جديد</span>
+</button>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+<div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 mb-6 flex flex-wrap items-center gap-4">
+<div class="flex-1 min-w-[300px] relative">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pr-12 pl-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary/10 focus:border-primary outline-none transition-all text-sm font-medium" placeholder="البحث عن طريق الاسم، البريد الإلكتروني أو المعرف..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<select class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 focus:ring-2 focus:ring-primary/10 outline-none min-w-[140px]">
+<option value="">جميع الأدوار</option>
+<option value="student">طالب</option>
+<option value="teacher">معلم</option>
+<option value="admin">مشرف</option>
+</select>
+<select class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 focus:ring-2 focus:ring-primary/10 outline-none min-w-[140px]">
+<option value="">جميع الصفوف</option>
+<option value="1">الصف الأول</option>
+<option value="2">الصف الثاني</option>
+<option value="3">الصف الثالث</option>
+</select>
+<button class="size-12 flex items-center justify-center rounded-xl border border-slate-200 text-slate-500 hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+<table class="w-full text-right border-collapse">
+<thead>
+<tr class="bg-slate-50 border-b border-slate-100">
+<th class="px-6 py-5 text-sm font-black text-slate-500">المستخدم</th>
+<th class="px-6 py-5 text-sm font-black text-slate-500">الدور</th>
+<th class="px-6 py-5 text-sm font-black text-slate-500">تاريخ الانضمام</th>
+<th class="px-6 py-5 text-sm font-black text-slate-500">الحالة</th>
+<th class="px-6 py-5 text-sm font-black text-slate-500">الإجراءات</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50">
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
+                                        س
+                                    </div>
+<div>
+<div class="text-sm font-bold text-slate-800">سارة أحمد</div>
+<div class="text-[11px] text-slate-500">sara.a@example.com</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-black">طالب</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium text-slate-600">١٢ مارس ٢٠٢٤</span>
+</td>
+<td class="px-6 py-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-[-1.25rem] after:content-[''] after:absolute after:top-[2px] after:right-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<button class="h-9 px-3 text-xs font-bold text-primary hover:bg-primary/5 rounded-lg transition-colors flex items-center gap-1 border border-primary/20">
+<span class="material-symbols-outlined text-sm">visibility</span>
+                                        الملف
+                                    </button>
+<button class="size-9 flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-bold">
+                                        م
+                                    </div>
+<div>
+<div class="text-sm font-bold text-slate-800">محمد العتيبي</div>
+<div class="text-[11px] text-slate-500">m.otaibi@example.com</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-orange-50 text-orange-600 rounded-full text-xs font-black">معلم</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium text-slate-600">٠٥ فبراير ٢٠٢٤</span>
+</td>
+<td class="px-6 py-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-[-1.25rem] after:content-[''] after:absolute after:top-[2px] after:right-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<button class="h-9 px-3 text-xs font-bold text-primary hover:bg-primary/5 rounded-lg transition-colors flex items-center gap-1 border border-primary/20">
+<span class="material-symbols-outlined text-sm">visibility</span>
+                                        الملف
+                                    </button>
+<button class="size-9 flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold">
+                                        ن
+                                    </div>
+<div>
+<div class="text-sm font-bold text-slate-800">نورة القحطاني</div>
+<div class="text-[11px] text-slate-500">noura.q@example.com</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-black">طالب</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium text-slate-600">٢٨ يناير ٢٠٢٤</span>
+</td>
+<td class="px-6 py-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-[-1.25rem] after:content-[''] after:absolute after:top-[2px] after:right-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<button class="h-9 px-3 text-xs font-bold text-primary hover:bg-primary/5 rounded-lg transition-colors flex items-center gap-1 border border-primary/20">
+<span class="material-symbols-outlined text-sm">visibility</span>
+                                        الملف
+                                    </button>
+<button class="size-9 flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+<span class="text-xs font-bold text-slate-500">عرض ١-١٠ من أصل ١,٢٥٤ مستخدم</span>
+<div class="flex items-center gap-1">
+<button class="size-8 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-400 disabled:opacity-50">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+<button class="size-8 flex items-center justify-center rounded-lg bg-primary text-white text-xs font-bold">١</button>
+<button class="size-8 flex items-center justify-center rounded-lg hover:bg-white border border-transparent hover:border-slate-200 text-slate-600 text-xs font-bold">٢</button>
+<button class="size-8 flex items-center justify-center rounded-lg hover:bg-white border border-transparent hover:border-slate-200 text-slate-600 text-xs font-bold">٣</button>
+<span class="px-1 text-slate-400">...</span>
+<button class="size-8 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-400">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>

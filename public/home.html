@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;family=Cairo:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#22c55e",
+                        "background-light": "#f8fafc",
+                        "accent-yellow": "#fbbf24",
+                    },
+                    fontFamily: {
+                        "display": ["Cairo", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.5rem",
+                        "xl": "2.5rem",
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        .star-pattern {
+            background-image: radial-gradient(circle at 2px 2px, #22c55e 2px, transparent 0);
+            background-size: 48px 48px;
+            background-repeat: repeat;
+            opacity: 0.05;
+        }
+        .sidebar-item {
+            @apply flex items-center gap-4 px-6 py-4 rounded-2xl transition-all duration-200 text-slate-600 hover:bg-green-50 hover:text-primary font-bold;
+        }
+        .sidebar-item.active {
+            @apply bg-primary text-white shadow-lg shadow-primary/20;
+        }
+        .circular-progress {
+            background: conic-gradient(#22c55e var(--progress), #e2e8f0 0deg);
+        }
+    </style>
+</head>
+<body class="bg-background-light text-slate-800 min-h-screen">
+<div class="fixed inset-0 star-pattern pointer-events-none"></div>
+<div class="flex min-h-screen relative z-10">
+<aside class="w-80 bg-white border-l border-slate-100 hidden lg:flex flex-col p-8 sticky top-0 h-screen">
+<div class="flex items-center gap-3 mb-12 px-2">
+<img src="assets/img/log.png" alt="" style="width: 150px;margin-bottom: -50px;margin-right: 40px;">
+</div>
+<nav class="space-y-3 flex-1">
+<a class="sidebar-item active" href="home.html">
+<span class="material-symbols-outlined">grid_view</span>
+<span>الرئيسية</span>
+</a>
+<a class="sidebar-item" href="subjects.html">
+<span class="material-symbols-outlined">menu_book</span>
+<span>دوراتي</span>
+</a>
+<a class="sidebar-item" href="store.html">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span>متجري</span>
+</a>
+<a class="sidebar-item" href="games.html">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span>الالعاب</span>
+</a>
+<a class="sidebar-item" href="achievements.html">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span>إنجازاتي</span>
+</a>
+<a class="sidebar-item" href="awards.html">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span>لوحة الشرف</span>
+</a>
+<a class="sidebar-item" href="profile.html">
+<span class="material-symbols-outlined">account_circle</span>
+<span>الملف الشخصي</span>
+</a>
+</nav>
+<div class="mt-auto pt-8 border-t border-slate-100">
+<div class="bg-slate-50 rounded-2xl p-6 relative overflow-hidden">
+<div class="relative z-10">
+<p class="text-sm font-bold text-slate-500 mb-2">هل تحتاج مساعدة؟</p>
+<button class="text-primary font-black text-sm flex items-center gap-2">
+                            تواصل معنا
+                            <span class="material-symbols-outlined text-sm">arrow_back</span>
+</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -left-4 text-7xl text-slate-200/50">help</span>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col min-w-0">
+<header class="bg-white/70 backdrop-blur-md border-b border-slate-100 sticky top-0 z-20 px-8 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex lg:hidden items-center gap-3">
+<div class="size-10 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+</div>
+<div class="flex-1 max-w-xl mx-8 hidden md:block">
+<div class="relative">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pr-12 pl-4 py-3 bg-slate-100 border-none rounded-xl focus:ring-2 focus:ring-primary/20 text-sm" placeholder="ابحث عن دورة جديدة..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="bg-yellow-50 px-4 py-2 rounded-full flex items-center gap-2 border border-yellow-100">
+<span class="material-symbols-outlined text-yellow-500 fill-current">stars</span>
+<span class="font-black text-yellow-700">1,250</span>
+</div>
+<div class="h-10 w-[1px] bg-slate-200"></div>
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="text-left hidden sm:block">
+<p class="text-sm font-black text-slate-800 leading-none">أحمد البطل</p>
+<p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">المستوى ٥</p>
+</div>
+<div class="size-12 rounded-2xl bg-slate-100 border-2 border-white shadow-sm overflow-hidden flex items-center justify-center">
+<img alt="Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFM_xPqGg7BQmVakKf_FVcdfwgHNMWqOElf4JqYMi1Tl3fA6LEX_W0PbaKEwX7LvAm9UvcNdbWU15u15B_FoUUiJGyBGF7TE5nYsLdKPQEmc7hOjkb4tSHqLBq8b7_Wtxc_Lhl0CpkL8q1SbT4nc847G8a1ComfPI69iIIl_11lqgG7ZqQV6zYcEyvJDLtikp31sZhgaPVG6bw3_LQghZVD4olqUjUat1U7LxroH0d6kRLNoL6YihwcA8aZWwI7oBcQnL91FPmFJ8"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<div class="p-8 max-w-7xl mx-auto w-full space-y-8">
+<div class="relative bg-primary rounded-[2.5rem] p-8 md:p-12 overflow-hidden text-white shadow-2xl shadow-primary/20">
+<div class="absolute inset-0 star-pattern opacity-20"></div>
+<div class="absolute -left-20 -top-20 size-80 bg-white/10 rounded-full blur-3xl"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-center gap-8 text-center md:text-right">
+<div class="flex-1">
+<h1 class="text-4xl md:text-5xl font-black mb-4">أهلاً بعودتك يا بطل! 🌟</h1>
+<p class="text-lg md:text-xl text-white/90 mb-8 max-w-xl">لقد قطعت شوطاً رائعاً في رحلة التعلم. أكمل دروسك اليوم واجمع المزيد من النجوم لتفتح جوائز جديدة!</p>
+<button class="bg-white text-primary px-8 py-4 rounded-2xl font-black text-lg hover:shadow-xl transition-all active:scale-95 flex items-center gap-3 mx-auto md:mx-0">
+                                تابع من حيث توقفت
+                                <span class="material-symbols-outlined">play_circle</span>
+</button>
+</div>
+<div class="w-48 md:w-64 hidden md:block">
+<img alt="Mascot" class="w-full drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-iqe6lG7OtRZJHDuqq76PZhEZ1TKkpsjTzPf8DdQWMCUtVCOawxueprnKFoupUYo3TfcL8wrGJaK6AswOEgH1z2TFB9WPlvfUgL-neIQNCulnWL55pFzCPsJ26zcFRfQy8pHM7oV1vUpMAqMAgwUX7CE_KKL14uHpMMdhjnzYPSc61LIPmvQH9S9seeEvDd4zYnQS1Chc-agYR6mXQ__UzrrQb1aVZJxUvXI8440ypwj8OtKDQHf4FcU0pD7QQ6uh8PsnieqA8uc"/>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-green-100 rounded-xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined font-bold">menu_book</span>
+</div>
+<h2 class="text-2xl font-black text-slate-800">دورات في التقدم</h2>
+</div>
+<button class="text-primary font-bold hover:underline flex items-center gap-1">
+                        عرض الكل
+                        <span class="material-symbols-outlined text-sm">arrow_back</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+<div class="bg-white rounded-[2rem] p-6 shadow-sm border border-slate-100 hover:shadow-xl transition-all group">
+<div class="relative mb-6">
+<div class="aspect-video bg-indigo-50 rounded-2xl flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-6xl text-indigo-200">science</span>
+</div>
+<div class="absolute -bottom-4 right-4 bg-white p-2 rounded-full shadow-lg">
+<div class="circular-progress size-16 rounded-full flex items-center justify-center p-1" style="--progress: 270deg">
+<div class="bg-white w-full h-full rounded-full flex items-center justify-center text-xs font-black text-slate-700">75%</div>
+</div>
+</div>
+</div>
+<h3 class="text-xl font-black text-slate-800 mb-2">مغامرات العلوم المرحة</h3>
+<p class="text-slate-500 text-sm mb-6">تعلم أساسيات الفيزياء والكيمياء بطريقة تفاعلية ممتعة.</p>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2 space-x-reverse">
+<div class="size-8 rounded-full border-2 border-white bg-slate-200"></div>
+<div class="size-8 rounded-full border-2 border-white bg-slate-300"></div>
+<div class="size-8 rounded-full border-2 border-white bg-primary text-[10px] text-white flex items-center justify-center font-bold">+12</div>
+</div>
+<button class="bg-slate-100 group-hover:bg-primary group-hover:text-white text-slate-600 px-6 py-3 rounded-xl font-bold transition-colors">متابعة</button>
+</div>
+</div>
+<div class="bg-white rounded-[2rem] p-6 shadow-sm border border-slate-100 hover:shadow-xl transition-all group">
+<div class="relative mb-6">
+<div class="aspect-video bg-orange-50 rounded-2xl flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-6xl text-orange-200">calculate</span>
+</div>
+<div class="absolute -bottom-4 right-4 bg-white p-2 rounded-full shadow-lg">
+<div class="circular-progress size-16 rounded-full flex items-center justify-center p-1" style="--progress: 120deg">
+<div class="bg-white w-full h-full rounded-full flex items-center justify-center text-xs font-black text-slate-700">33%</div>
+</div>
+</div>
+</div>
+<h3 class="text-xl font-black text-slate-800 mb-2">ملك الأرقام الذكي</h3>
+<p class="text-slate-500 text-sm mb-6">أتقن فنون الحساب الذهني والرياضيات المتقدمة بسهولة.</p>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2 space-x-reverse">
+<div class="size-8 rounded-full border-2 border-white bg-slate-200"></div>
+<div class="size-8 rounded-full border-2 border-white bg-primary text-[10px] text-white flex items-center justify-center font-bold">+5</div>
+</div>
+<button class="bg-slate-100 group-hover:bg-primary group-hover:text-white text-slate-600 px-6 py-3 rounded-xl font-bold transition-colors">متابعة</button>
+</div>
+</div>
+<div class="bg-white rounded-[2rem] p-6 shadow-sm border border-slate-100 hover:shadow-xl transition-all group">
+<div class="relative mb-6">
+<div class="aspect-video bg-emerald-50 rounded-2xl flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-6xl text-emerald-200">language</span>
+</div>
+<div class="absolute -bottom-4 right-4 bg-white p-2 rounded-full shadow-lg">
+<div class="circular-progress size-16 rounded-full flex items-center justify-center p-1" style="--progress: 40deg">
+<div class="bg-white w-full h-full rounded-full flex items-center justify-center text-xs font-black text-slate-700">10%</div>
+</div>
+</div>
+</div>
+<h3 class="text-xl font-black text-slate-800 mb-2">رحلة حول العالم</h3>
+<p class="text-slate-500 text-sm mb-6">استكشف القارات واللغات والثقافات المختلفة من غرفتك.</p>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2 space-x-reverse">
+<div class="size-8 rounded-full border-2 border-white bg-slate-200"></div>
+<div class="size-8 rounded-full border-2 border-white bg-primary text-[10px] text-white flex items-center justify-center font-bold">+28</div>
+</div>
+<button class="bg-slate-100 group-hover:bg-primary group-hover:text-white text-slate-600 px-6 py-3 rounded-xl font-bold transition-colors">متابعة</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100">
+<h3 class="text-xl font-black text-slate-800 mb-8 flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-500 fill-current">military_tech</span>
+                        آخر الإنجازات
+                    </h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<div class="flex flex-col items-center text-center p-4 rounded-2xl bg-slate-50 border border-slate-100 group">
+<div class="size-20 bg-yellow-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-yellow-600">bolt</span>
+</div>
+<p class="font-bold text-slate-800">بطل السرعة</p>
+<p class="text-[10px] text-slate-400">قبل ٢ يوم</p>
+</div>
+<div class="flex flex-col items-center text-center p-4 rounded-2xl bg-slate-50 border border-slate-100 group">
+<div class="size-20 bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-blue-600">psychology</span>
+</div>
+<p class="font-bold text-slate-800">العبقري الصغير</p>
+<p class="text-[10px] text-slate-400">قبل ٥ أيام</p>
+</div>
+<div class="flex flex-col items-center text-center p-4 rounded-2xl bg-slate-50 border border-slate-100 group">
+<div class="size-20 bg-green-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-green-600">verified</span>
+</div>
+<p class="font-bold text-slate-800">الالتزام التام</p>
+<p class="text-[10px] text-slate-400">أسبوع مضى</p>
+</div>
+<div class="flex flex-col items-center text-center p-4 rounded-2xl bg-slate-50 border border-slate-100 group opacity-50">
+<div class="size-20 bg-slate-200 rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-4xl text-slate-400">lock</span>
+</div>
+<p class="font-bold text-slate-400">مقفل</p>
+<p class="text-[10px] text-slate-300">أكمل دورة أخرى</p>
+</div>
+</div>
+</div>
+</div>
+<footer class="mt-auto py-8 px-8 text-center text-slate-400 text-sm font-bold border-t border-slate-100">
+
+<p class="mt-4">© 2026 إيكو ستارز. جميع الحقوق محفوظة لجميع الأبطال.</p>
+</footer>
+</main>
+</div>
+
+</body></html>

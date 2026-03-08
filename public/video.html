@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;family=Cairo:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#22c55e",
+                        "background-light": "#f8fafc",
+                        "accent-yellow": "#fbbf24",
+                    },
+                    fontFamily: {
+                        "display": ["Cairo", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.5rem",
+                        "xl": "2.5rem",
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        .star-pattern {
+            background-image: radial-gradient(circle at 2px 2px, #22c55e 2px, transparent 0);
+            background-size: 48px 48px;
+            background-repeat: repeat;
+            opacity: 0.05;
+        }
+        .sidebar-item {
+            @apply flex items-center gap-4 px-6 py-4 rounded-2xl transition-all duration-200 text-slate-600 hover:bg-green-50 hover:text-primary font-bold;
+        }
+        .sidebar-item.active {
+            @apply bg-primary text-white shadow-lg shadow-primary/20;
+        }
+        .circular-progress {
+            background: conic-gradient(#22c55e var(--progress), #e2e8f0 0deg);
+        }
+    </style>
+</head>
+<body class="bg-background-light text-slate-800 min-h-screen">
+<div class="fixed inset-0 star-pattern pointer-events-none"></div>
+<div class="flex min-h-screen relative z-10">
+<aside class="w-80 bg-white border-l border-slate-100 hidden lg:flex flex-col p-8 sticky top-0 h-screen">
+<div class="flex items-center gap-3 mb-12 px-2">
+<img src="assets/img/log.png" alt="" style="width: 150px;margin-bottom: -50px;margin-right: 40px;">
+</div>
+<nav class="space-y-3 flex-1">
+<a class="sidebar-item" href="home.html">
+<span class="material-symbols-outlined">grid_view</span>
+<span>الرئيسية</span>
+</a>
+<a class="sidebar-item" href="subjects.html">
+<span class="material-symbols-outlined">menu_book</span>
+<span>دوراتي</span>
+</a>
+<a class="sidebar-item" href="store.html">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span>متجري</span>
+</a>
+<a class="sidebar-item" href="games.html">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span>الالعاب</span>
+</a>
+<a class="sidebar-item" href="achievements.html">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span>إنجازاتي</span>
+</a>
+<a class="sidebar-item" href="awards.html">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span>لوحة الشرف</span>
+</a>
+<a class="sidebar-item" href="profile.html">
+<span class="material-symbols-outlined">account_circle</span>
+<span>الملف الشخصي</span>
+</a>
+</nav>
+<div class="mt-auto pt-8 border-t border-slate-100">
+<div class="bg-slate-50 rounded-2xl p-6 relative overflow-hidden">
+<div class="relative z-10">
+<p class="text-sm font-bold text-slate-500 mb-2">هل تحتاج مساعدة؟</p>
+<button class="text-primary font-black text-sm flex items-center gap-2">
+                            تواصل معنا
+                            <span class="material-symbols-outlined text-sm">arrow_back</span>
+</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -left-4 text-7xl text-slate-200/50">help</span>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col min-w-0">
+<header class="bg-white/70 backdrop-blur-md border-b border-slate-100 sticky top-0 z-20 px-8 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex lg:hidden items-center gap-3">
+<div class="size-10 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+</div>
+<div class="flex-1 max-w-xl mx-8 hidden md:block">
+<div class="relative">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pr-12 pl-4 py-3 bg-slate-100 border-none rounded-xl focus:ring-2 focus:ring-primary/20 text-sm" placeholder="ابحث عن دورة جديدة..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="bg-yellow-50 px-4 py-2 rounded-full flex items-center gap-2 border border-yellow-100">
+<span class="material-symbols-outlined text-yellow-500 fill-current">stars</span>
+<span class="font-black text-yellow-700">1,250</span>
+</div>
+<div class="h-10 w-[1px] bg-slate-200"></div>
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="text-left hidden sm:block">
+<p class="text-sm font-black text-slate-800 leading-none">أحمد البطل</p>
+<p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">المستوى ٥</p>
+</div>
+<div class="size-12 rounded-2xl bg-slate-100 border-2 border-white shadow-sm overflow-hidden flex items-center justify-center">
+<img alt="Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFM_xPqGg7BQmVakKf_FVcdfwgHNMWqOElf4JqYMi1Tl3fA6LEX_W0PbaKEwX7LvAm9UvcNdbWU15u15B_FoUUiJGyBGF7TE5nYsLdKPQEmc7hOjkb4tSHqLBq8b7_Wtxc_Lhl0CpkL8q1SbT4nc847G8a1ComfPI69iIIl_11lqgG7ZqQV6zYcEyvJDLtikp31sZhgaPVG6bw3_LQghZVD4olqUjUat1U7LxroH0d6kRLNoL6YihwcA8aZWwI7oBcQnL91FPmFJ8"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<div class="p-4 md:p-8">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-8 space-y-6">
+<div class="video-container shadow-2xl shadow-primary/20 bg-slate-900 flex items-center justify-center relative group">
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined !text-8xl text-white/20">play_circle</span>
+</div>
+<img alt="Space Video" class="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf7mjIfH97e0q0rDRv8lmTN9JrWyuRndmaDD9juDvcsqfHcgND3UipQdzWGAq43jvFNC58wlqCDqR--viofvJkKnU1txEBgEQE2xU_ybJqKJcMH6MyAwsL0aMqcrFpmA58MelPzj-CXaazzVQPW-SgOX5la7BGNELv4uLqrKa13QFkcV0KbP8aK6zfEqzrBb0_pPKr5EVj0Db3LqEUIwFRKy_ka8WO0k587cr0yRQ4-F8fE-SvVQubYORrLRKJoWVz2_0h0MCKMJM"/>
+<div class="absolute bottom-6 left-6 right-6 flex items-center gap-4 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20">
+<button class="size-12 rounded-xl bg-white text-primary flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined fill-current">play_arrow</span>
+</button>
+<div class="flex-1 h-2 bg-white/30 rounded-full relative">
+<div class="absolute top-0 right-0 h-full w-1/3 bg-primary rounded-full"></div>
+</div>
+<span class="text-white font-bold text-sm">١٠:٤٥</span>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-800">
+<div>
+<h1 class="text-3xl font-black text-slate-800 dark:text-white mb-2">الدرس الثالث: الكواكب والنجوم</h1>
+<p class="text-slate-500 dark:text-slate-400 font-medium">في هذا الدرس سنتعرف على عجائب المجموعة الشمسية</p>
+</div>
+<button class="bg-success hover:bg-success/90 text-white px-8 py-4 rounded-2xl font-black text-lg flex items-center justify-center gap-3 shadow-xl shadow-success/30 transition-all transform hover:scale-105">
+<span class="material-symbols-outlined">check_circle</span>
+                                تم الإكمال
+                            </button>
+</div>
+</div>
+<div class="lg:col-span-4 h-full">
+<div class="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 flex flex-col h-[calc(100vh-12rem)] shadow-sm">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800">
+<h3 class="text-xl font-black flex items-center gap-3 text-slate-800 dark:text-white">
+<span class="material-symbols-outlined text-primary">format_list_bulleted</span>
+                                    قائمة الدروس
+                                </h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">الوحدة الأولى: استكشاف الفضاء</p>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar">
+<div class="lesson-card p-4 rounded-2xl border border-slate-100 dark:border-slate-800 flex items-center gap-4 bg-slate-50/50 dark:bg-slate-800/30">
+<div class="size-10 rounded-xl bg-success text-white flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">check</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-800 dark:text-white text-sm">مقدمة في علم الفلك</h4>
+<span class="text-xs text-slate-400">٥ دقائق</span>
+</div>
+</div>
+<div class="lesson-card p-4 rounded-2xl border border-slate-100 dark:border-slate-800 flex items-center gap-4 bg-slate-50/50 dark:bg-slate-800/30">
+<div class="size-10 rounded-xl bg-success text-white flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">check</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-800 dark:text-white text-sm">تلسكوباتنا الأولى</h4>
+<span class="text-xs text-slate-400">٨ دقائق</span>
+</div>
+</div>
+<div class="lesson-card active p-4 rounded-2xl border-2 flex items-center gap-4">
+<div class="size-10 rounded-xl bg-primary text-white flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">play_arrow</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-primary text-sm">الكواكب والنجوم</h4>
+<span class="text-xs text-primary/70">١٢ دقيقة • جاري المشاهدة</span>
+</div>
+</div>
+<div class="lesson-card p-4 rounded-2xl border border-slate-100 dark:border-slate-800 flex items-center gap-4 hover:border-primary/30 transition-colors cursor-pointer group">
+<div class="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 group-hover:bg-primary/10 group-hover:text-primary flex items-center justify-center shrink-0 transition-colors">
+<span class="material-symbols-outlined text-xl">lock</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-500 dark:text-slate-400 text-sm">الحياة في محطة الفضاء</h4>
+<span class="text-xs text-slate-400">١٥ دقيقة</span>
+</div>
+</div>
+<div class="lesson-card p-4 rounded-2xl border border-slate-100 dark:border-slate-800 flex items-center gap-4 hover:border-primary/30 transition-colors cursor-pointer group">
+<div class="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 group-hover:bg-primary/10 group-hover:text-primary flex items-center justify-center shrink-0 transition-colors">
+<span class="material-symbols-outlined text-xl">lock</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-500 dark:text-slate-400 text-sm">البدلات الفضائية</h4>
+<span class="text-xs text-slate-400">٧ دقائق</span>
+</div>
+</div>
+<div class="lesson-card p-4 rounded-2xl border border-slate-100 dark:border-slate-800 flex items-center gap-4 hover:border-primary/30 transition-colors cursor-pointer group">
+<div class="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 group-hover:bg-primary/10 group-hover:text-primary flex items-center justify-center shrink-0 transition-colors">
+<span class="material-symbols-outlined text-xl">lock</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-500 dark:text-slate-400 text-sm">رحلة العودة للأرض</h4>
+<span class="text-xs text-slate-400">١٠ دقائق</span>
+</div>
+</div>
+</div>
+<div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-b-[2rem]">
+<div class="flex items-center justify-between text-sm font-bold mb-2">
+<span class="text-slate-600 dark:text-slate-400">تقدم الوحدة</span>
+<span class="text-primary">٥٠٪</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-1/2"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div class="fixed bottom-8 left-8 pointer-events-none z-50">
+<div class="size-20 bg-primary/20 backdrop-blur-md rounded-3xl border-2 border-primary/30 flex items-center justify-center text-primary transform -rotate-12">
+<span class="material-symbols-outlined !text-4xl fill-current">rocket_launch</span>
+</div>
+</div>
+
+</body></html>

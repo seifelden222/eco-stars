@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#22c55e",
+                        "primary-dark": "#16a34a",
+                        "background-light": "#f8faf9",
+                    },
+                    fontFamily: {
+                        "sans": ["Cairo", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        .star-pattern {
+            background-image: radial-gradient(circle at 2px 2px, #22c55e 1px, transparent 0);
+            background-size: 48px 48px;
+            background-repeat: repeat;
+            opacity: 0.08;
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at center, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+        }
+    </style>
+</head>
+<body class="bg-background-light text-slate-900 font-sans">
+<div class="min-h-screen relative overflow-x-hidden">
+<div class="absolute inset-0 star-pattern pointer-events-none -z-10"></div>
+<div class="absolute top-0 left-0 w-full h-screen hero-gradient -z-10"></div>
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-primary/10">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img src="assets/img/log.png" alt="" style="width: 180px;">
+</div>
+
+<div class="flex items-center gap-4">
+<a class="hidden sm:block font-bold text-primary hover:text-primary-dark px-4 py-2 transition-colors" href="login.html">تسجيل الدخول</a>
+
+</div>
+</div>
+</header>
+<section class="relative pt-20 pb-32 overflow-hidden">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="space-y-8 relative z-10">
+<div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full font-bold text-sm">
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+                        أفضل منصة تعليمية تفاعلية للأطفال
+                    </div>
+<h1 class="text-5xl lg:text-7xl font-black text-slate-900 leading-[1.2]">
+                        اجعل طفلك <br/>
+<span class="text-primary">نجم المستقبل</span>
+</h1>
+<p class="text-xl text-slate-600 leading-relaxed max-w-lg font-medium">
+                        رحلة تعليمية ممتعة تعتمد على اللعب، تساعد طفلك على اكتساب مهارات القرن الواحد والعشرين في بيئة آمنة ومحفزة.
+                    </p>
+
+<div class="flex items-center gap-4 pt-6">
+<div class="flex -space-x-3 space-x-reverse">
+<img alt="User" class="size-10 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDn3APfr3DLnbUAynFwVvPuxv0IKOGA7cXQXE1pvsK_wV_WRC6ch0e_umqrKRvl1b3mSamvC6t8_0RAOCOkxEwAUP98HDKIdRJwMQjxCVx1aeCQD3OvkGed9Fv9PiO9LdubK_BtD-TKgQjo5m6YOzWobQ4-gfM0gcXW7KnJlXmiwDf4UaHIOeSReFEafKVJbM_8Z_-FNOZaxetJfLbfmA8I2CbMOExZNNk-SB_mRbUNaIVftgDEHt-rZUSow6zg5rxRLtkWwOYKqQw"/>
+<img alt="User" class="size-10 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByWUZVdB63xbrTONm7vsCd4-AQ-lI6tOIipMxkFLaWYTksOsyIsD8iNDWy1gosebq7vdfPQz5MYS-Kf3hMdVQe8yokhY37tH8T6fbUZKGf_ulr6ps6RVFq5RdUhXD2hRkZedDtVknkVKUT4_syKZv1PmHlIV3Zckgw_trKAjpEPHIho8vNiC5tnIRdbzdByNpFnyHWxTILizAtmm_EY_f5_0n9woIahFPvukOr0pNczAn97IebmXfLWJ5P2jDR3qhQOPNb0gkMze0"/>
+<img alt="User" class="size-10 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDglTHVrxr411fA-SpzahfXaJEgzp2QdUX7TG_2RXrsjEIgUtMeYJR6IsTnHNPLbUk-Hk_ScsdF9KbbLxADYlAAmA9i3OVQ_Z4xgS8duFKsm2WGKi_6YDVn097WeDIs8PwqbNZQ69M862xZDRJooU-F5-CzrGpVp2Ab33PZX0g-pgBCMq2TYxDORmFR3yXCnhRP7it0kRrCHdcXaOD_jFbXuvGjJxM0n5-UiLg5tvUlK0g3r9yB-6jExRPB3dBjBO955fut2WU-_gs"/>
+</div>
+<p class="text-sm font-bold text-slate-500">انضم إلى <span class="text-primary">+١٠,٠٠٠</span> طفل يتعلمون معنا يومياً</p>
+</div>
+</div>
+<div class="relative">
+<div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl transform rotate-2">
+<img alt="Child holding a star" class="w-full h-full object-cover aspect-square" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfWU3XXHYbR_iWLehEns3ztN-gqbmsdQchKv6V3hKsLU3teHNN_0DbCfMqgCUNWLYK6tCA55EONBZlYDnyTiz86QjZF360QoZjq779n3R_Y7_fYBcCZ1BpkdtTjQxb1O7ngBHEadNt6YI519EHaXW14mpMYccLGsjSh5pNv_5RJaqhcgjfbmateFco2Xgs0MLyBPPm2dQz3yLtmxsANZtnQ0_E1CP1ka2NT7ReWEbYfrYJJfEGa5fcam2ODbYK0dv8Rmnur8PWdh4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+<div class="absolute top-8 left-8 bg-white/90 backdrop-blur p-4 rounded-2xl shadow-xl animate-bounce">
+<span class="material-symbols-outlined text-4xl text-yellow-400 fill-current">star</span>
+</div>
+</div>
+<div class="absolute -top-20 -right-20 size-80 bg-primary/10 rounded-full blur-3xl -z-10"></div>
+<div class="absolute -bottom-20 -left-20 size-80 bg-yellow-400/10 rounded-full blur-3xl -z-10"></div>
+<div class="absolute -bottom-10 -right-10 bg-white p-6 rounded-3xl shadow-2xl flex items-center gap-4 z-20 border border-slate-50">
+<div class="size-14 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600">
+<span class="material-symbols-outlined text-3xl fill-current">military_tech</span>
+</div>
+<div>
+<p class="text-sm text-slate-500 font-bold">إجمالي الجوائز</p>
+<p class="text-xl font-black text-slate-900">١,٢٥٠+ وسام</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-white">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center max-w-3xl mx-auto mb-20">
+<h2 class="text-4xl font-black text-slate-900 mb-6">لماذا يختار الآباء إيكو ستارز؟</h2>
+<p class="text-lg text-slate-500 font-medium">لقد صممنا منصتنا لتكون بيئة آمنة، تعليمية، ومليئة بالمغامرات التي لا تنتهي.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="p-10 rounded-3xl bg-background-light border border-slate-100 hover:border-primary/20 transition-all group">
+<div class="size-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl">joystick</span>
+</div>
+<h3 class="text-2xl font-black text-slate-900 mb-4">تعلم بالألعاب</h3>
+<p class="text-slate-500 leading-relaxed font-medium">حولنا المناهج الدراسية إلى تحديات مشوقة تجعل الطفل لا يمل من التعلم.</p>
+</div>
+<div class="p-10 rounded-3xl bg-background-light border border-slate-100 hover:border-primary/20 transition-all group">
+<div class="size-16 bg-blue-100 text-blue-500 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl">verified_user</span>
+</div>
+<h3 class="text-2xl font-black text-slate-900 mb-4">بيئة آمنة ١٠٠٪</h3>
+<p class="text-slate-500 leading-relaxed font-medium">محتوى مراقب ومناسب للأطفال مع حماية كاملة لخصوصيتهم وبياناتهم.</p>
+</div>
+<div class="p-10 rounded-3xl bg-background-light border border-slate-100 hover:border-primary/20 transition-all group">
+<div class="size-16 bg-yellow-100 text-yellow-600 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl">monitoring</span>
+</div>
+<h3 class="text-2xl font-black text-slate-900 mb-4">تقارير دورية</h3>
+<p class="text-slate-500 leading-relaxed font-medium">لوحة تحكم خاصة للأهل لمتابعة تقدم الطفل في كل مهارة يكتسبها.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-primary overflow-hidden relative">
+<div class="absolute inset-0 opacity-10 star-pattern"></div>
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-white text-center">
+<div>
+<p class="text-5xl font-black mb-2">+٥٠٠</p>
+<p class="text-lg font-bold opacity-80">درس تعليمي</p>
+</div>
+<div>
+<p class="text-5xl font-black mb-2">+١٠٠</p>
+<p class="text-lg font-bold opacity-80">لعبة ذكاء</p>
+</div>
+<div>
+<p class="text-5xl font-black mb-2">+٥٠</p>
+<p class="text-lg font-bold opacity-80">معلم خبير</p>
+</div>
+<div>
+<p class="text-5xl font-black mb-2">٤.٩/٥</p>
+<p class="text-lg font-bold opacity-80">تقييم الأهل</p>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-slate-900 text-white pt-20 pb-10">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-3 mb-6">
+<img src="assets/img/log.png" alt="" style="width: 200px;">
+</div>
+<p class="text-slate-400 font-medium leading-relaxed">
+                        نحن نؤمن بأن كل طفل لديه موهبة فريدة، مهمتنا هي مساعدتهم على اكتشافها وتنميتها من خلال العلم والمرح.
+                    </p>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-6">الروابط السريعة</h4>
+<ul class="space-y-4 text-slate-400 font-medium">
+<li><a class="hover:text-primary transition-colors" href="#">من نحن</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">سياسة الخصوصية</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">الأسئلة الشائعة</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">اتصل بنا</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-6">الدروس</h4>
+<ul class="space-y-4 text-slate-400 font-medium">
+<li><a class="hover:text-primary transition-colors" href="#">اللغة العربية</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">الرياضيات والمنطق</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">العلوم والاكتشاف</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">اللغة الإنجليزية</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-6">اشترك في نشرتنا</h4>
+<p class="text-slate-400 font-medium mb-4">احصل على أنشطة تعليمية مجانية كل أسبوع في بريدك.</p>
+<div class="flex gap-2">
+<input class="bg-slate-800 border-none rounded-xl px-4 py-3 flex-1 text-sm focus:ring-2 focus:ring-primary" placeholder="بريدك الإلكتروني" type="email"/>
+<button class="bg-primary hover:bg-primary-dark p-3 rounded-xl transition-colors">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 pt-10 border-t border-slate-800 text-center text-slate-500 text-sm font-bold">
+<p>جميع الحقوق محفوظة © 2026 إيكو ستارز التعليمية</p>
+</div>
+</footer>
+</div>
+
+</body></html>
