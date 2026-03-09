@@ -13,12 +13,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('role')->default('student'); // child / parent / admin
             $table->date('birth_date')->nullable();
             $table->string('grade')->nullable();
             $table->string('parent_name')->nullable();
             $table->string('parent_phone')->nullable();
             $table->boolean('is_active')->default(true);
+            $table->rememberToken();
             $table->timestamps();
         });
     }

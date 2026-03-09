@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\Course;
+use App\Models\Point;
+use App\Models\Reward;
 
 class User extends Authenticatable
 {
@@ -15,14 +20,14 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      */
     protected $fillable = [
-        'name',          // اسم الطفل أو الأب
-        'email',         // مطلوب في جدول users (بنحطه parent_phone@child.com للأطفال)
-        'password',      // كلمة المرور
-        'role',          // child أو parent
-        'birth_date',    // تاريخ ميلاد الطفل
-        'grade',         // الصف الدراسي
-        'parent_name',   // اسم الأب
-        'parent_phone',  // رقم الأب
+        'name',
+        'email',
+        'password',
+        'birth_date',
+        'grade',
+        'parent_name',
+        'parent_phone',
+        'is_active',
     ];
 
     /**
@@ -37,7 +42,36 @@ class User extends Authenticatable
      * The attributes that should be cast.
      */
     protected $casts = [
+        'birth_date' => 'date',
+        'is_active' => 'boolean',
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    
+
+    /**
+     * Courses the child is enrolled in
+     */
+    public function enrolledCourses(): BelongsToMany
+    {
+        return $this->belongsToMany(Course::class, 'child_course', 'child_id', 'course_id')->withTimestamps();
+    }
+
+    /**
+     * Points records for the child
+     */
+    public function points(): HasMany
+    {
+        return $this->hasMany(Point::class, 'child_id');
+    }
+
+    /**
+     * Rewards the child has claimed
+     */
+    public function rewards(): BelongsToMany
+    {
+        return $this->belongsToMany(Reward::class, 'child_reward', 'child_id', 'reward_id')
+            ->withPivot('points_spent')
+            ->withTimestamps();
+    }
 }

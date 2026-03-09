@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('points', function (Blueprint $table) {
-    $table->id();
-    $table->integer('total_points');
-    $table->integer('used_points');
-    $table->foreignId('child_id')->nullable()->constrained('children')->nullOnDelete();
-    $table->foreignId('teacher_id')->nullable()->constrained('teachers')->nullOnDelete();
-    $table->timestamps();
-});
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->integer('points');
+            $table->string('type')->default('earn');
+            $table->string('reason')->nullable();
+            $table->timestamps();
+        });
 
     }
 

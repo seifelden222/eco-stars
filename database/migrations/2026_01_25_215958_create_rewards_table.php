@@ -12,14 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rewards', function (Blueprint $table) {
-    $table->id();
-    $table->string('reward_type',100);
-    $table->date('reward_date');
-    $table->integer('points');
-    $table->foreignId('child_id')->nullable()->constrained('children')->nullOnDelete();
-    $table->foreignId('teacher_id')->nullable()->constrained('teachers')->nullOnDelete();
-    $table->timestamps();
-});
+            $table->id();
+            $table->string('title');
+            $table->integer('points_required');
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+        });
 
     }
 
