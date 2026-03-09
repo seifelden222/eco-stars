@@ -1,109 +1,125 @@
 @extends('layouts.app')
 
-@section('title', 'الألعاب التعليمية - إيكو ستارز')
+@section('title', 'متجري - إيكو ستارز')
+
+@push('styles')
+<style type="text/tailwindcss">
+    .card-glow {
+        @apply hover:shadow-xl hover:-translate-y-1;
+    }
+</style>
+@endpush
 
 @section('content')
-<div class="p-4 sm:p-8 max-w-7xl mx-auto w-full space-y-10">
-    
-    <div class="text-right">
-        <h2 class="text-3xl font-black text-slate-800 dark:text-white mb-2 italic">اختر مغامرتك القادمة! 🚀</h2>
-        <p class="text-lg text-slate-500 dark:text-slate-400 font-bold">العب وتعلم واجمع المزيد من النجوم لتطوير مستواك</p>
+<div class="p-8 relative z-10 flex-1">
+    <div class="flex gap-4 overflow-x-auto pb-6 mb-8 scrollbar-hide">
+        <button class="whitespace-nowrap px-8 py-3 bg-primary text-white font-bold rounded-2xl shadow-lg shadow-primary/20">الكل</button>
+        <button class="whitespace-nowrap px-8 py-3 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold rounded-2xl border border-slate-100 dark:border-slate-700 hover:border-primary transition-all">أفاتار جديد</button>
+        <button class="whitespace-nowrap px-8 py-3 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold rounded-2xl border border-slate-100 dark:border-slate-700 hover:border-primary transition-all">بدلات الفضاء</button>
+        <button class="whitespace-nowrap px-8 py-3 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold rounded-2xl border border-slate-100 dark:border-slate-700 hover:border-primary transition-all">خلفيات كوكبية</button>
+        <button class="whitespace-nowrap px-8 py-3 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold rounded-2xl border border-slate-100 dark:border-slate-700 hover:border-primary transition-all">أدوات مميزة</button>
     </div>
-
-    <!-- شبكة الألعاب -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
-        <!-- لعبة 1 -->
-        <div class="bg-white dark:bg-slate-900 rounded-[3rem] overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-2xl transition-all group flex flex-col">
-            <div class="h-60 bg-gradient-to-br from-indigo-500 to-purple-700 relative overflow-hidden flex items-center justify-center">
-                <div class="absolute inset-0 opacity-20 star-pattern"></div>
-                <span class="material-symbols-outlined !text-[120px] text-white/90 transform group-hover:scale-110 transition-transform">rocket</span>
-                <div class="absolute top-4 left-4 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/30 text-white text-[10px] font-black uppercase tracking-widest">
-                    مغامرة الفضاء
+    <div class="mb-12">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-black flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">face_6</span>
+                أفاتار جديد
+            </h3>
+            <a class="text-primary font-bold text-sm hover:underline" href="#">عرض المزيد</a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div class="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 border border-slate-100 dark:border-slate-800 card-glow transition-all group">
+                <div class="aspect-square bg-slate-50 dark:bg-slate-800 rounded-[2rem] mb-6 flex items-center justify-center relative overflow-hidden">
+                    <span class="material-symbols-outlined text-8xl text-slate-300 group-hover:scale-110 transition-transform">person_4</span>
+                    <div class="absolute top-4 right-4 px-3 py-1 bg-yellow-400 text-white rounded-full text-xs font-black shadow-md">جديد</div>
+                </div>
+                <h4 class="font-bold text-lg mb-2">المستكشف الصغير</h4>
+                <div class="flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-1.5 text-yellow-600 font-black">
+                        <span class="material-symbols-outlined text-lg fill-current">stars</span>
+                        ٥٠٠
+                    </div>
+                    <button class="flex-1 py-2.5 bg-primary hover:bg-primary/90 text-white font-black rounded-xl text-sm transition-colors">استبدال</button>
                 </div>
             </div>
-            <div class="p-8 flex flex-col flex-1">
-                <h3 class="text-2xl font-black text-slate-800 dark:text-white mb-3">جامع النجوم</h3>
-                <p class="text-slate-500 dark:text-slate-400 font-bold text-sm leading-relaxed mb-8">ساعد رائد الفضاء في جمع النجوم وتجنب الكويكبات الخطيرة في رحلة عبر المجرة!</p>
-                
-                <div class="mt-auto pt-6 border-t border-slate-50 dark:border-slate-800 flex items-center justify-between">
-                    <div class="flex items-center gap-1.5 text-yellow-500">
-                        <span class="material-symbols-outlined fill-current">stars</span>
-                        <span class="font-black text-lg">١٠٠+</span>
+            <div class="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 border border-slate-100 dark:border-slate-800 card-glow transition-all group">
+                <div class="aspect-square bg-blue-50 dark:bg-blue-900/20 rounded-[2rem] mb-6 flex items-center justify-center relative overflow-hidden">
+                    <span class="material-symbols-outlined text-8xl text-blue-300 group-hover:scale-110 transition-transform">person_pin</span>
+                </div>
+                <h4 class="font-bold text-lg mb-2">القائد الذكي</h4>
+                <div class="flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-1.5 text-yellow-600 font-black">
+                        <span class="material-symbols-outlined text-lg fill-current">stars</span>
+                        ٧٥٠
                     </div>
-                    <a href="#" class="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-2xl font-black flex items-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95">
-                        <span>العب الآن</span>
-                        <span class="material-symbols-outlined">play_arrow</span>
-                    </a>
+                    <button class="flex-1 py-2.5 bg-primary hover:bg-primary/90 text-white font-black rounded-xl text-sm transition-colors">استبدال</button>
                 </div>
             </div>
         </div>
-
-        <!-- لعبة 2 -->
-        <div class="bg-white dark:bg-slate-900 rounded-[3rem] overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-2xl transition-all group flex flex-col">
-            <div class="h-60 bg-gradient-to-br from-orange-400 to-red-600 relative overflow-hidden flex items-center justify-center">
-                <div class="absolute inset-0 opacity-20 star-pattern"></div>
-                <span class="material-symbols-outlined !text-[120px] text-white/90 transform group-hover:scale-110 transition-transform">pets</span>
-                <div class="absolute top-4 left-4 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/30 text-white text-[10px] font-black uppercase tracking-widest">
-                    عالم الحيوان
-                </div>
-            </div>
-            <div class="p-8 flex flex-col flex-1">
-                <h3 class="text-2xl font-black text-slate-800 dark:text-white mb-3">بطاقات الذاكرة</h3>
-                <p class="text-slate-500 dark:text-slate-400 font-bold text-sm leading-relaxed mb-8">اختبر قوة ذاكرتك ووفق بين صور الحيوانات اللطيفة لتكسب نقاطاً إضافية!</p>
-                
-                <div class="mt-auto pt-6 border-t border-slate-50 dark:border-slate-800 flex items-center justify-between">
-                    <div class="flex items-center gap-1.5 text-yellow-500">
-                        <span class="material-symbols-outlined fill-current">stars</span>
-                        <span class="font-black text-lg">٨٠+</span>
-                    </div>
-                    <a href="#" class="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-2xl font-black flex items-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95">
-                        <span>العب الآن</span>
-                        <span class="material-symbols-outlined">play_arrow</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- لعبة 3 (صديقة للبيئة) -->
-        <div class="bg-white dark:bg-slate-900 rounded-[3rem] overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-2xl transition-all group flex flex-col">
-            <div class="h-60 bg-gradient-to-br from-emerald-400 to-teal-700 relative overflow-hidden flex items-center justify-center">
-                <div class="absolute inset-0 opacity-20 star-pattern"></div>
-                <span class="material-symbols-outlined !text-[120px] text-white/90 transform group-hover:scale-110 transition-transform">recycling</span>
-            </div>
-            <div class="p-8 flex flex-col flex-1">
-                <h3 class="text-2xl font-black text-slate-800 dark:text-white mb-3">سباق الاستدامة</h3>
-                <p class="text-slate-500 dark:text-slate-400 font-bold text-sm leading-relaxed mb-8">قد سيارة إيكو ستار وتفادى المخلفات لتنظيف كوكبنا الجميل!</p>
-                
-                <div class="mt-auto pt-6 border-t border-slate-50 dark:border-slate-800 flex items-center justify-between">
-                    <div class="flex items-center gap-1.5 text-yellow-500">
-                        <span class="material-symbols-outlined fill-current">stars</span>
-                        <span class="font-black text-lg">١٢٠+</span>
-                    </div>
-                    <a href="#" class="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-2xl font-black flex items-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95">
-                        <span>العب الآن</span>
-                        <span class="material-symbols-outlined">play_arrow</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
     </div>
-
-    <!-- بنر تحفيزي -->
-    <div class="mt-12 bg-slate-900 dark:bg-white/5 p-10 rounded-[3.5rem] flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-right border-2 border-dashed border-slate-700">
-        <div class="flex items-center gap-6">
-            <div class="size-20 bg-yellow-400/20 rounded-3xl flex items-center justify-center text-yellow-400">
-                <span class="material-symbols-outlined !text-5xl">emoji_events</span>
+    <div class="mb-12">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-black flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">apparel</span>
+                بدلات الفضاء
+            </h3>
+            <a class="text-primary font-bold text-sm hover:underline" href="#">عرض المزيد</a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div class="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 border border-slate-100 dark:border-slate-800 card-glow transition-all group">
+                <div class="aspect-square bg-orange-50 dark:bg-orange-900/20 rounded-[2rem] mb-6 flex items-center justify-center relative overflow-hidden">
+                    <span class="material-symbols-outlined text-8xl text-orange-300 group-hover:scale-110 transition-transform">rocket_launch</span>
+                </div>
+                <h4 class="font-bold text-lg mb-2">بدلة المريخ</h4>
+                <div class="flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-1.5 text-yellow-600 font-black">
+                        <span class="material-symbols-outlined text-lg fill-current">stars</span>
+                        ١,٢٠٠
+                    </div>
+                    <button class="flex-1 py-2.5 bg-primary hover:bg-primary/90 text-white font-black rounded-xl text-sm transition-colors">استبدال</button>
+                </div>
             </div>
-            <div>
-                <h4 class="text-xl font-black text-white italic">هل تريد فتح المزيد من الألعاب؟</h4>
-                <p class="text-slate-400 font-bold">أكمل الدروس اليومية لفتح ألعاب حصرية ومستويات سرية!</p>
+            <div class="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 border border-slate-100 dark:border-slate-800 card-glow transition-all group opacity-75">
+                <div class="aspect-square bg-purple-50 dark:bg-purple-900/20 rounded-[2rem] mb-6 flex items-center justify-center relative overflow-hidden">
+                    <span class="material-symbols-outlined text-8xl text-purple-300 group-hover:scale-110 transition-transform">star_rate</span>
+                    <div class="absolute inset-0 bg-slate-900/20 backdrop-blur-[2px] flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white text-4xl">lock</span>
+                    </div>
+                </div>
+                <h4 class="font-bold text-lg mb-2">بدلة الثقب الأسود</h4>
+                <div class="flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-1.5 text-slate-400 font-black">
+                        <span class="material-symbols-outlined text-lg fill-current">stars</span>
+                        ٣,٠٠٠
+                    </div>
+                    <button class="flex-1 py-2.5 bg-slate-200 dark:bg-slate-800 text-slate-400 font-black rounded-xl text-sm cursor-not-allowed" disabled="">مغلق</button>
+                </div>
             </div>
         </div>
-        <a href="{{ route('subjects') }}" class="bg-white text-slate-900 px-10 py-4 rounded-2xl font-black text-lg hover:bg-slate-100 transition-all whitespace-nowrap shadow-xl shadow-white/5">
-            اذهب إلى الدروس
-        </a>
+    </div>
+    <div class="mb-12">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-black flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">wallpaper</span>
+                خلفيات كوكبية
+            </h3>
+            <a class="text-primary font-bold text-sm hover:underline" href="#">عرض المزيد</a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div class="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 border border-slate-100 dark:border-slate-800 card-glow transition-all group">
+                <div class="aspect-video bg-emerald-50 dark:bg-emerald-900/20 rounded-[1.5rem] mb-6 flex items-center justify-center relative overflow-hidden">
+                    <span class="material-symbols-outlined text-6xl text-emerald-300 group-hover:scale-110 transition-transform">public</span>
+                </div>
+                <h4 class="font-bold text-lg mb-2">كوكب الأرض</h4>
+                <div class="flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-1.5 text-yellow-600 font-black">
+                        <span class="material-symbols-outlined text-lg fill-current">stars</span>
+                        ٢٥٠
+                    </div>
+                    <button class="flex-1 py-2.5 bg-primary hover:bg-primary/90 text-white font-black rounded-xl text-sm transition-colors">استبدال</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

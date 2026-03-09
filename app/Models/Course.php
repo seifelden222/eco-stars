@@ -32,7 +32,7 @@ class Course extends Model
      */
     public function children(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'child_course', 'course_id', 'child_id')
+        return $this->belongsToMany(User::class, 'child_course', 'course_id', 'user_id')
             ->withTimestamps();
     }
 }

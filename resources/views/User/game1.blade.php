@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>لعبة تطابق البطاقات - إيكو ستارز</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -141,9 +143,14 @@
       <div id="messageIcon" class="material-symbols-outlined text-8xl mb-5"></div>
       <h2 id="messageTitle" class="text-3xl font-black mb-3 text-slate-800"></h2>
       <p id="messageText" class="text-lg text-slate-600 mb-6"></p>
-      <button id="playAgainBtn" class="bg-primary hover:bg-green-600 text-white text-xl font-bold px-10 py-4 rounded-2xl shadow-lg transition-transform hover:scale-105">
-        العب مرة أخرى
-      </button>
+      <div class="flex gap-4 justify-center">
+        <button id="playAgainBtn" class="bg-primary hover:bg-green-600 text-white text-xl font-bold px-10 py-4 rounded-2xl shadow-lg transition-transform hover:scale-105">
+          العب مرة أخرى
+        </button>
+        <a href="{{ route('games') }}" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xl font-bold px-10 py-4 rounded-2xl shadow-lg transition-transform hover:scale-105">
+          العاب أخرى
+        </a>
+      </div>
     </div>
   </div>
 
@@ -158,6 +165,8 @@
 </div>
 
 <script>
+const gamesPageUrl = "{{ route('games') }}";
+
 const animals = [
   { emoji: "🦁", color: "text-orange-600",     name: "أسد"     },
   { emoji: "🐰", color: "text-pink-500",       name: "أرنب"    },
@@ -309,7 +318,7 @@ document.getElementById("pauseBtn").addEventListener("click", () => {
 
 document.getElementById("exitBtn").addEventListener("click", () => {
   if (confirm("هل تريد الخروج من اللعبة؟")) {
-    window.location.reload();
+    window.location.href = gamesPageUrl;
   }
 });
 

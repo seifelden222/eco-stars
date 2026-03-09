@@ -61,7 +61,7 @@
                         <p class="text-xs text-slate-400">{{ Auth::user()->email }}</p>
                     </div>
 
-                    <a href="{{ route('profile.edit') }}" class="flex items-center gap-3 px-4 py-3 text-sm font-bold text-slate-600 hover:bg-green-50 hover:text-primary transition-colors">
+                    <a href="{{ route('profile') }}" class="flex items-center gap-3 px-4 py-3 text-sm font-bold text-slate-600 hover:bg-green-50 hover:text-primary transition-colors">
                         <span class="material-symbols-outlined text-lg">account_circle</span>
                         الملف الشخصي
                     </a>

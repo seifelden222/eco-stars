@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>لعبة الأسئلة السريعة - إيكو ستارز</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -170,9 +172,14 @@
     <span id="resultIcon" class="material-symbols-outlined text-9xl mb-6 block"></span>
     <h2 id="resultTitle" class="text-5xl font-black mb-6 hologram-glow"></h2>
     <p id="resultScore" class="text-2xl mb-8"></p>
-    <button id="restartBtn" class="bg-primary hover:bg-green-700 text-white text-2xl font-bold px-12 py-5 rounded-2xl shadow-lg transition-all hover:scale-105">
-      العب مرة أخرى
-    </button>
+    <div class="flex gap-4 justify-center">
+      <button id="restartBtn" class="bg-primary hover:bg-green-700 text-white text-2xl font-bold px-12 py-5 rounded-2xl shadow-lg transition-all hover:scale-105">
+        العب مرة أخرى
+      </button>
+      <a href="{{ route('games') }}" class="glass-panel text-white text-2xl font-bold px-12 py-5 rounded-2xl shadow-lg transition-all hover:scale-105 hover:bg-white/10">
+        العاب أخرى
+      </a>
+    </div>
   </div>
 </div>
 
@@ -186,6 +193,8 @@
 </div>
 
 <script>
+const gamesPageUrl = "{{ route('games') }}";
+
 const questionsPool = [
   { q: "ما هو ناتج ضرب ٧ في ٩؟", a: 63, options: [56, 63, 49, 72] },
   { q: "كم يساوي ٨ × ٦؟", a: 48, options: [42, 54, 48, 56] },
@@ -351,7 +360,7 @@ restartBtn.onclick = startGame;
 
 document.getElementById("closeBtn").onclick = () => {
   if (confirm("هل تريد إنهاء اللعبة؟")) {
-    window.location.reload();
+    window.location.href = gamesPageUrl;
   }
 };
 

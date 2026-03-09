@@ -1,26 +1,126 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<title>سباق الاستدامة - إيكو ستارز</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-@section('title','سباق الاستدامة - Eco Stars')
+body {
+    font-family: 'Cairo', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    color: #0b3d0b;
+    text-align: center;
+    overflow: hidden;
+}
 
-@section('content')
-<div class="max-w-md mx-auto p-6 text-center">
-    <h1 class="text-3xl font-black">🌱 سباق الاستدامة</h1>
-    <p class="mt-2 font-semibold text-emerald-700">سُق عربية الأطفال وتفادى المخلفات</p>
+h1 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #1b5e20;
+    margin: 25px 0 12px;
+    text-shadow: 0 4px 12px rgba(27,94,32,0.3);
+}
 
-    <canvas id="game" width="320" height="440" class="mx-auto mt-6 rounded-xl border-4 border-emerald-700 shadow-lg" ></canvas>
+p {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2e7d32;
+    margin-bottom: 20px;
+}
 
-    <div id="info" class="mt-4 inline-block bg-white/80 p-3 rounded-lg border-2 border-emerald-200 font-bold">النقاط: <span id="score">0</span></div>
+canvas {
+    background: linear-gradient(to bottom, #ffffff 0%, #f1f8e9 100%);
+    border: 5px solid #2e7d32;
+    border-radius: 24px;
+    box-shadow: 
+        0 12px 40px rgba(0,0,0,0.18),
+        inset 0 6px 20px rgba(255,255,255,0.7),
+        inset 0 -6px 20px rgba(0,0,0,0.08);
+    margin: 0 auto;
+    display: block;
+    transform: perspective(900px) rotateX(4deg);
+}
+
+#info {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1b5e20;
+    margin: 25px 0;
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(12px);
+    padding: 14px 28px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    display: inline-block;
+    border: 2px solid #66bb6a;
+}
+
+#info span {
+    color: #2e7d32;
+    font-size: 1.7rem;
+}
+
+#exitBtn {
+    margin-top: 15px;
+    padding: 10px 28px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#exitBtn:hover {
+    background: #dc2626;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌱 سباق الاستدامة</h1>
+<p>سُق عربية الأطفال وتفادى المخلفات</p>
+
+<canvas id="game" width="320" height="440"></canvas>
+
+<div id="info">
+    النقاط: <span id="score">0</span>
 </div>
 
+<button id="exitBtn">🚪 خروج للألعاب</button>
+
 <script>
+const gamesPageUrl = "{{ route('games') }}";
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
-let car = { x: 135, y: 340, width: 50, height: 80 };
+let car = {
+    x: 135,
+    y: 340,
+    width: 50,
+    height: 80
+};
+
 let obstacles = [];
 let score = 0;
 let speed = 2.5;
 let gameOver = false;
+
 const trashTypes = ["🍌", "🧴", "🥫", "🛍️", "📄", "🧃"];
 
 document.addEventListener("keydown", e => {
@@ -30,35 +130,87 @@ document.addEventListener("keydown", e => {
 
 canvas.addEventListener("touchstart", e => {
     let x = e.touches[0].clientX - canvas.offsetLeft;
-    if (x < canvas.width / 2) car.x -= 30; else car.x += 30;
+    if (x < canvas.width / 2) car.x -= 30;
+    else car.x += 30;
 });
 
 function drawCar() {
     ctx.fillStyle = "#43a047";
-    ctx.fillRect(car.x, car.y + 15, car.width, 50);
+    ctx.fillRect(car.x, car.y + 15, car.width, 50, 12);
+
     ctx.fillStyle = "#2e7d32";
-    ctx.fillRect(car.x + 8, car.y, car.width - 16, 25);
+    ctx.fillRect(car.x + 8, car.y, car.width - 16, 25, 10);
+
     ctx.fillStyle = "#000";
-    ctx.beginPath(); ctx.arc(car.x + 10, car.y + 70, 7, 0, Math.PI * 2); ctx.arc(car.x + car.width - 10, car.y + 70, 7, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath();
+    ctx.arc(car.x + 10, car.y + 70, 7, 0, Math.PI * 2);
+    ctx.arc(car.x + car.width - 10, car.y + 70, 7, 0, Math.PI * 2);
+    ctx.fill();
 }
 
-function createObstacle() { obstacles.push({ x: Math.random() * (canvas.width - 40), y: -40, size: 40, icon: trashTypes[Math.floor(Math.random() * trashTypes.length)] }); }
-function drawObstacles() { ctx.font = "36px Arial"; obstacles.forEach(o => { ctx.fillText(o.icon, o.x, o.y); o.y += speed; }); }
-function hit(o) { return ( car.x < o.x + o.size && car.x + car.width > o.x && car.y < o.y + o.size && car.y + car.height > o.y ); }
+function createObstacle() {
+    obstacles.push({
+        x: Math.random() * (canvas.width - 40),
+        y: -40,
+        size: 40,
+        icon: trashTypes[Math.floor(Math.random() * trashTypes.length)]
+    });
+}
+
+function drawObstacles() {
+    ctx.font = "36px Arial";
+    obstacles.forEach(o => {
+        ctx.fillText(o.icon, o.x, o.y);
+        o.y += speed;
+    });
+}
+
+function hit(o) {
+    return (
+        car.x < o.x + o.size &&
+        car.x + car.width > o.x &&
+        car.y < o.y + o.size &&
+        car.y + car.height > o.y
+    );
+}
 
 function update() {
     if (gameOver) return;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawCar(); drawObstacles();
+
+    drawCar();
+    drawObstacles();
+
     obstacles.forEach((o, i) => {
-        if (hit(o)) { gameOver = true; alert("❌ خبطت في المخلفات! خلي بالك من البيئة"); location.reload(); }
-        if (o.y > canvas.height) { obstacles.splice(i, 1); score++; document.getElementById("score").textContent = score; if (score % 5 === 0) speed += 0.4; }
+        if (hit(o)) {
+            gameOver = true;
+            alert("❌ خبطت في المخلفات! خلي بالك من البيئة");
+            location.reload();
+        }
+
+        if (o.y > canvas.height) {
+            obstacles.splice(i, 1);
+            score++;
+            document.getElementById("score").textContent = score;
+
+            if (score % 5 === 0) speed += 0.4;
+        }
     });
+
     requestAnimationFrame(update);
 }
 
 setInterval(createObstacle, 900);
+
+document.getElementById("exitBtn").addEventListener("click", () => {
+    if (confirm("هل تريد الخروج من اللعبة؟")) {
+        window.location.href = gamesPageUrl;
+    }
+});
+
 update();
 </script>
 
-@endsection
+</body>
+</html>

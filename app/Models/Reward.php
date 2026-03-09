@@ -21,7 +21,7 @@ class Reward extends Model
      */
     public function children(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'child_reward', 'reward_id', 'child_id')
+        return $this->belongsToMany(User::class, 'child_reward', 'reward_id', 'user_id')
             ->withPivot('points_spent')
             ->withTimestamps();
     }

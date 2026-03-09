@@ -1,4 +1,4 @@
-<div class="flex min-h-screen">
+<div class="flex min-h-screen w-full">
     <aside class="w-80 bg-white border-l border-slate-100 hidden lg:flex flex-col p-6 sticky top-0 h-screen">
         <div class="flex items-center gap-3 mb-8 px-2">
             <img src="{{ asset('assets/img/log.png') }}" alt="" class="w-40" />

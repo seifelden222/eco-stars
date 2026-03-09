@@ -54,7 +54,7 @@
         }
         /* تحسينات عامة للهيكل */
         .main-wrapper {
-            @apply flex min-h-screen relative z-10;
+            @apply relative z-10;
         }
         .content-area {
             @apply flex-1 flex flex-col min-w-0 bg-background-light;

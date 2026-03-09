@@ -11,7 +11,7 @@ class Point extends Model
     use HasFactory;
 
     protected $fillable = [
-        'child_id',
+        'user_id',
         'points',
         'type',
         'reason',
@@ -22,6 +22,6 @@ class Point extends Model
      */
     public function child(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'child_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

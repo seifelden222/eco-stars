@@ -54,7 +54,7 @@ class User extends Authenticatable
      */
     public function enrolledCourses(): BelongsToMany
     {
-        return $this->belongsToMany(Course::class, 'child_course', 'child_id', 'course_id')->withTimestamps();
+        return $this->belongsToMany(Course::class, 'child_course', 'user_id', 'course_id')->withTimestamps();
     }
 
     /**
@@ -62,7 +62,7 @@ class User extends Authenticatable
      */
     public function points(): HasMany
     {
-        return $this->hasMany(Point::class, 'child_id');
+        return $this->hasMany(Point::class, 'user_id');
     }
 
     /**
@@ -70,7 +70,7 @@ class User extends Authenticatable
      */
     public function rewards(): BelongsToMany
     {
-        return $this->belongsToMany(Reward::class, 'child_reward', 'child_id', 'reward_id')
+        return $this->belongsToMany(Reward::class, 'child_reward', 'user_id', 'reward_id')
             ->withPivot('points_spent')
             ->withTimestamps();
     }
