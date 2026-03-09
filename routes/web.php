@@ -28,4 +28,21 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Public user pages (children)
+Route::view('/home', 'User.home')->name('home');
+Route::view('/games', 'User.games')->name('games');
+Route::view('/awards', 'User.awards')->name('awards');
+Route::view('/store', 'User.store')->name('store');
+Route::view('/subjects', 'User.subjects')->name('subjects');
+Route::view('/lessons', 'User.lessons')->name('lessons');
+Route::view('/video', 'User.video')->name('video');
+Route::view('/index', 'User.index')->name('index');
+
+// Game routes
+Route::view('/game2', 'User.game2')->name('game2');
+Route::view('/game3', 'User.game3')->name('game3');
+Route::view('/game4', 'User.game4')->name('game4');
+Route::view('/game5', 'User.game5')->name('game5');
+Route::view('/game6', 'User.game6')->name('game6');
+
 require __DIR__.'/auth.php';
