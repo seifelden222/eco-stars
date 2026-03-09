@@ -304,6 +304,44 @@ function endGame(won) {
   }
 }
 
+// hidden progress form to submit points and redirect to achievements
+const progressForm = document.createElement('form');
+progressForm.id = 'progressForm';
+progressForm.method = 'POST';
+progressForm.action = '{{ route('progress.store') }}';
+progressForm.style.display = 'none';
+progressForm.innerHTML = `@csrf
+  <input type="hidden" name="points" id="progressPoints" value="0">
+  <input type="hidden" name="reason" value="game1">
+  <input type="hidden" name="type" value="earn">`;
+document.body.appendChild(progressForm);
+
+// submit points when game ends
+function submitGame1Points(won) {
+  try {
+    let pts = 0;
+    if (won) {
+      pts = Math.max(0, 100 - moves * 2 - seconds);
+    } else {
+      pts = Math.max(0, Math.floor((matchedPairs/8) * 100));
+    }
+    const pointsInput = document.getElementById('progressPoints');
+    if (pointsInput) {
+      pointsInput.value = pts;
+      progressForm.submit();
+    }
+  } catch (e) {
+    console.error('progress submit failed', e);
+  }
+}
+
+// intercept endGame to submit
+const _origEndGame = endGame;
+endGame = function(won) {
+  _origEndGame(won);
+  submitGame1Points(won);
+}
+
 document.getElementById("playAgainBtn").addEventListener("click", () => {
   messageBox.classList.add("hidden");
   initGame();

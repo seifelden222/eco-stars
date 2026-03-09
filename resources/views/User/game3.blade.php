@@ -343,5 +343,34 @@ initGame();
 requestAnimationFrame(gameLoop);
 </script>
 
+<!-- hidden progress form: submit collected stars as points on game over -->
+<form id="progressForm" method="POST" action="{{ route('progress.store') }}" style="display:none">
+  @csrf
+  <input type="hidden" name="points" id="progressPoints" value="0">
+  <input type="hidden" name="reason" value="game3">
+  <input type="hidden" name="type" value="earn">
+</form>
+
+<script>
+// submit when game over shows (use collected variable)
+const _origShowGameOver = showGameOver;
+function submitGame3Points(won) {
+  try {
+    const pts = Math.max(0, collected * 5);
+    const pointsInput = document.getElementById('progressPoints');
+    const form = document.getElementById('progressForm');
+    if (pointsInput && form) {
+      pointsInput.value = pts;
+      form.submit();
+    }
+  } catch (e) { console.error(e); }
+}
+
+showGameOver = function(won) {
+  _origShowGameOver(won);
+  submitGame3Points(won);
+}
+</script>
+
 </body>
 </html>

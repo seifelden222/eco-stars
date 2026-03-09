@@ -207,6 +207,14 @@ p {
 
 <a href="{{ route('games') }}" class="back-btn">🚪 خروج للألعاب</a>
 
+<!-- hidden progress form to submit points when puzzle is completed -->
+<form id="progressForm" method="POST" action="{{ route('progress.store') }}" style="display:none">
+  @csrf
+  <input type="hidden" name="points" id="progressPoints" value="0">
+  <input type="hidden" name="reason" value="game6">
+  <input type="hidden" name="type" value="earn">
+</form>
+
 <script>
 let draggedPiece = null;
 
@@ -242,6 +250,18 @@ function checkWin() {
   } else {
     document.querySelector(".success").style.display = "none";
   }
+  if (correct === 6) {
+    document.querySelector(".success").style.display = "block";
+    // submit points (fixed value) and redirect to achievements
+    try {
+      const form = document.getElementById('progressForm');
+      const input = document.getElementById('progressPoints');
+      if (form && input) {
+        input.value = 60;
+        form.submit();
+        return;
+      }
+    } catch (e) { console.error(e); }
 }
 </script>
 

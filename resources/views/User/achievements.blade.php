@@ -18,20 +18,20 @@
     <div class="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 mb-8 shadow-sm">
         <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
             <div class="flex items-center gap-4">
-                <div class="size-16 bg-gradient-to-tr from-primary to-emerald-300 rounded-2xl flex items-center justify-center text-white shadow-lg">
-                    <span class="text-2xl font-black">٥</span>
+                <div id="levelBadge" class="size-16 bg-gradient-to-tr from-primary to-emerald-300 rounded-2xl flex items-center justify-center text-white shadow-lg">
+                    <span id="levelNumber" class="text-2xl font-black">{{ $level ?? '--' }}</span>
                 </div>
                 <div>
                     <h3 class="text-xl font-black">تقدم المستوى</h3>
-                    <p class="text-slate-500 dark:text-slate-400 font-bold">بقي لك ٤٥٠ نقطة للوصول للمستوى ٦</p>
+                    <p id="pointsRemaining" class="text-slate-500 dark:text-slate-400 font-bold">بقي لك {{ $points_to_next_level ?? '...' }} نقطة للوصول للمستوى {{ ($level ?? 1) + 1 }}</p>
                 </div>
             </div>
             <div class="text-left md:text-right">
-                <span class="text-3xl font-black text-primary">٧٥٪</span>
+                <span id="progressPercent" class="text-3xl font-black text-primary">{{ $level_progress_percent ?? '--' }}%</span>
             </div>
         </div>
         <div class="h-6 bg-slate-100 dark:bg-slate-800 rounded-full p-1 relative">
-            <div class="h-full bg-primary rounded-full shadow-inner flex items-center justify-end px-2" style="width: 75%">
+            <div id="progressBarInner" class="h-full bg-primary rounded-full shadow-inner flex items-center justify-end px-2" style="width: {{ $level_progress_percent ?? 0 }}%">
                 <div class="size-3 bg-white rounded-full shadow-sm"></div>
             </div>
         </div>
@@ -112,6 +112,8 @@
         </div>
     </div>
 </div>
+
+{{-- Progress data rendered server-side; no client API call needed --}}
 
 <!-- نافذة منبثقة لتفاصيل الوسام -->
 <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden">

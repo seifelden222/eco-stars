@@ -123,6 +123,13 @@
 
 <main class="relative z-10 w-full max-w-5xl flex flex-col items-center gap-16 px-6">
 
+  <form id="progressForm" method="POST" action="{{ route('progress.store') }}" style="display:none">
+    @csrf
+    <input type="hidden" name="points" id="progressPoints" value="0">
+    <input type="hidden" name="reason" value="game2">
+    <input type="hidden" name="type" value="earn">
+  </form>
+
   <div class="w-full relative three-d-float">
     <div class="absolute -inset-1 bg-gradient-to-r from-sci-fi-blue to-sci-fi-purple rounded-[3rem] blur-xl opacity-20"></div>
     <div class="glass-panel rounded-[3.5rem] p-12 text-center relative overflow-hidden">
@@ -344,6 +351,18 @@ function showGameOver(won) {
     resultIcon.className = "material-symbols-outlined text-red-400 text-9xl mb-6 block";
     resultTitle.textContent = "حاول مرة أخرى!";
     resultScore.textContent = `نقاطك: ${score} من ${totalQuestions * 10}`;
+  }
+
+  // submit points via hidden form to store and redirect to achievements page
+  try {
+    const pointsInput = document.getElementById('progressPoints');
+    const form = document.getElementById('progressForm');
+    if (pointsInput && form) {
+      pointsInput.value = score;
+      form.submit();
+    }
+  } catch (e) {
+    console.error('Failed to submit progress form', e);
   }
 }
 

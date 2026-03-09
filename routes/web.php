@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\User\ProgressController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::view('/home', 'User.home')->name('home');
     Route::view('/profile', 'User.profile')->name('profile');
     Route::view('/subjects', 'User.subjects')->name('subjects');
-    Route::view('/achievements', 'User.achievements')->name('achievements');
+    Route::get('/achievements', [ProgressController::class, 'showAchievements'])->name('achievements');
     Route::view('/awards', 'User.awards')->name('awards');
     Route::view('/store', 'User.store')->name('store');
     Route::view('/games', 'User.games')->name('games');
@@ -46,6 +47,9 @@ Route::middleware('auth')->group(function () {
     Route::view('/game/4', 'User.game4')->name('game4');
     Route::view('/game/5', 'User.game5')->name('game5');
     Route::view('/game/6', 'User.game6')->name('game6');
+
+    // progress: record game results (web POST)
+    Route::post('/progress', [ProgressController::class, 'store'])->name('progress.store');
 });
 
 require __DIR__ . '/auth.php';

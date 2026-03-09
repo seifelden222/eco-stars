@@ -104,6 +104,13 @@ canvas {
 
 <button id="exitBtn">🚪 خروج للألعاب</button>
 
+<form id="progressForm" method="POST" action="{{ route('progress.store') }}" style="display:none">
+    @csrf
+    <input type="hidden" name="points" id="progressPoints" value="0">
+    <input type="hidden" name="reason" value="game5">
+    <input type="hidden" name="type" value="earn">
+</form>
+
 <script>
 const gamesPageUrl = "{{ route('games') }}";
 const canvas = document.getElementById("game");
@@ -185,8 +192,20 @@ function update() {
     obstacles.forEach((o, i) => {
         if (hit(o)) {
             gameOver = true;
-            alert("❌ خبطت في المخلفات! خلي بالك من البيئة");
-            location.reload();
+                // submit points and redirect to achievements
+                try {
+                    const pointsInput = document.getElementById('progressPoints');
+                    const form = document.getElementById('progressForm');
+                    if (pointsInput && form) {
+                        pointsInput.value = score;
+                        form.submit();
+                        return;
+                    }
+                } catch (e) {
+                    console.error(e);
+                }
+                alert("❌ خبطت في المخلفات! خلي بالك من البيئة");
+                location.reload();
         }
 
         if (o.y > canvas.height) {

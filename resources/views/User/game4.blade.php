@@ -138,6 +138,13 @@ h3 {
 
 <body>
 
+<form id="progressForm" method="POST" action="{{ route('progress.store') }}" style="display:none">
+    @csrf
+    <input type="hidden" name="points" id="progressPoints" value="0">
+    <input type="hidden" name="reason" value="game4">
+    <input type="hidden" name="type" value="earn">
+</form>
+
 <h1>🌱 لعبة الاستدامة</h1>
 <h3>اختار كل الحاجات الصح عشان تعدي الليفل</h3>
 
@@ -221,6 +228,18 @@ function nextLevel() {
         level++;
         loadLevel();
     } else {
+        // finished all levels: submit points and redirect to achievements
+        try {
+            const pointsInput = document.getElementById('progressPoints');
+            const form = document.getElementById('progressForm');
+            if (pointsInput && form) {
+                pointsInput.value = score;
+                form.submit();
+                return;
+            }
+        } catch (e) {
+            console.error(e);
+        }
         alert("🏆 مبروك! خلصت كل الليفلز وبقيت صديق للبيئة");
     }
 }
