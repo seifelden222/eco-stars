@@ -59,6 +59,12 @@
         .content-area {
             @apply flex-1 flex flex-col min-w-0 bg-background-light;
         }
+        .sidebar-item {
+            @apply flex items-center justify-between gap-3 px-4 py-3 rounded-2xl font-bold text-slate-600 transition-all hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/20;
+        }
+        .sidebar-item.active {
+            @apply bg-primary text-white shadow-lg shadow-primary/20;
+        }
     </style>
     @stack('styles')
 </head>
