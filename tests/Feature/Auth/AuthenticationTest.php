@@ -13,7 +13,21 @@ test('users can authenticate using the login screen', function () {
     $user = User::factory()->create();
 
     $response = $this->post('/login', [
-        'email' => $user->email,
+        'login' => $user->email,
+        'password' => 'password',
+    ]);
+
+    $this->assertAuthenticated();
+    $response->assertRedirect(RouteServiceProvider::HOME);
+});
+
+test('users can authenticate using their phone number', function () {
+    $user = User::factory()->create([
+        'phone' => '01012345678',
+    ]);
+
+    $response = $this->post('/login', [
+        'login' => '01012345678',
         'password' => 'password',
     ]);
 
@@ -25,7 +39,7 @@ test('users can not authenticate with invalid password', function () {
     $user = User::factory()->create();
 
     $this->post('/login', [
-        'email' => $user->email,
+        'login' => $user->email,
         'password' => 'wrong-password',
     ]);
 

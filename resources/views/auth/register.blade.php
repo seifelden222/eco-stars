@@ -107,6 +107,13 @@
                             <x-input-error :messages="$errors->get('email')" class="mt-1" />
                         </div>
 
+                        <!-- رقم الهاتف -->
+                        <div class="space-y-1">
+                            <label class="block text-sm font-bold text-slate-600 dark:text-slate-400 mr-2">رقم الهاتف</label>
+                            <input name="phone" type="text" value="{{ old('phone') }}" required class="form-input-custom" placeholder="مثلاً: 01012345678"/>
+                            <x-input-error :messages="$errors->get('phone')" class="mt-1" />
+                        </div>
+
                         <!-- كلمة المرور -->
                         <div class="space-y-1">
                             <label class="block text-sm font-bold text-slate-600 dark:text-slate-400 mr-2">كلمة المرور</label>

@@ -16,22 +16,22 @@
             <form class="space-y-6 text-right" method="POST" action="{{ route('login') }}">
                 @csrf
 
-                <!-- البريد الإلكتروني -->
+                <!-- البريد الإلكتروني أو رقم الهاتف -->
                 <div class="space-y-2">
-                    <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mr-1" for="email">البريد الإلكتروني</label>
+                    <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mr-1" for="login">البريد الإلكتروني أو رقم الهاتف</label>
                     <div class="relative">
                         <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">person</span>
-                        <input class="w-full pr-12 pl-4 py-4 bg-slate-50/70 dark:bg-slate-800/70 border-none rounded-2xl focus:ring-2 focus:ring-primary text-lg font-medium transition-all @error('email') ring-2 ring-red-500 @enderror" 
-                               id="email" 
-                               name="email" 
-                               type="email" 
-                               value="{{ old('email') }}" 
-                               placeholder="اكتب بريدك هنا" 
+                        <input class="w-full pr-12 pl-4 py-4 bg-slate-50/70 dark:bg-slate-800/70 border-none rounded-2xl focus:ring-2 focus:ring-primary text-lg font-medium transition-all @error('login') ring-2 ring-red-500 @enderror" 
+                               id="login" 
+                               name="login" 
+                               type="text" 
+                               value="{{ old('login') }}" 
+                               placeholder="اكتب بريدك أو رقم هاتفك هنا" 
                                required 
                                autofocus 
                                autocomplete="username" />
                     </div>
-                    @error('email')
+                    @error('login')
                         <p class="text-red-500 text-xs font-bold mt-1 mr-1">{{ $message }}</p>
                     @enderror
                 </div>
