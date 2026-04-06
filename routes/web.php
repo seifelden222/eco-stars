@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\SettingsController as AdminSettingsController;
 use App\Http\Controllers\User\ProgressController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +27,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile', function (Request $request) {
+        return view('User.profile', [
+            'user' => $request->user(),
+        ]);
+    })->name('profile');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
@@ -33,7 +39,7 @@ Route::middleware('auth')->group(function () {
 // User pages
 Route::middleware('auth')->group(function () {
     Route::view('/home', 'User.home')->name('home');
-    Route::view('/profile', 'User.profile')->name('profile');
+    Route::view('/user-profile', 'User.profile')->name('user.profile');
     Route::view('/subjects', 'User.subjects')->name('subjects');
     Route::get('/achievements', [ProgressController::class, 'showAchievements'])->name('achievements');
     Route::view('/awards', 'User.awards')->name('awards');
@@ -64,7 +70,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::view('/users', 'admin.usersmanagements')->name('users');
         Route::view('/subjects', 'admin.subjectsmanagements')->name('subjects');
         Route::view('/reports', 'admin.reports')->name('reports');
-        Route::view('/settings', 'admin.systemsettings')->name('settings');
+        Route::get('/settings', [AdminSettingsController::class, 'edit'])->name('settings');
+        Route::post('/settings', [AdminSettingsController::class, 'update'])->name('settings.update');
         Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
     });
 });

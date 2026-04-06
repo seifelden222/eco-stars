@@ -28,12 +28,19 @@
                 <span class="material-symbols-outlined">workspace_premium</span>
                 <span>لوحة الشرف</span>
             </a>
-            <a class="sidebar-item {{ request()->routeIs('profile') || request()->routeIs('profile.edit') ? 'active' : '' }}" href="{{ url('profile') }}">
+            <a class="sidebar-item {{ request()->routeIs('profile') || request()->routeIs('user.profile') ? 'active' : '' }}" href="{{ route('profile') }}">
                 <span class="material-symbols-outlined">account_circle</span>
                 <span>الملف الشخصي</span>
             </a>
         </nav>
         <div class="mt-auto pt-8 border-t border-slate-100">
+            <form method="POST" action="{{ route('logout') }}" class="mb-4">
+                @csrf
+                <button type="submit" class="sidebar-item w-full justify-start text-red-500 hover:bg-red-50 hover:text-red-600 hover:shadow-none">
+                    <span class="material-symbols-outlined">logout</span>
+                    <span>تسجيل الخروج</span>
+                </button>
+            </form>
             <div class="bg-slate-50 rounded-2xl p-6 relative overflow-hidden">
                 <div class="relative z-10">
                     <p class="text-sm font-bold text-slate-500 mb-2">هل تحتاج مساعدة؟</p>

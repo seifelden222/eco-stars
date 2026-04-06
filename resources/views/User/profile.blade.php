@@ -4,9 +4,7 @@
 
 @push('styles')
 <style type="text/tailwindcss">
-    .settings-card {
-        @apply bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 shadow-sm;
-    }
+    .settings-card { @apply bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm; }
 </style>
 @endpush
 
@@ -14,114 +12,133 @@
 <div class="p-8 relative z-10 w-full space-y-8">
     <section class="settings-card flex flex-col md:flex-row items-center gap-8">
         <div class="relative group">
-            <div class="size-40 bg-slate-100 dark:bg-slate-800 rounded-[2.5rem] flex items-center justify-center overflow-hidden border-4 border-white dark:border-slate-700 shadow-xl">
-                <span class="material-symbols-outlined text-8xl text-slate-400">face</span>
+            <div class="size-40 bg-slate-100 rounded-[2.5rem] flex items-center justify-center overflow-hidden border-4 border-white shadow-xl">
+                @if ($user->avatar_path)
+                    <img src="{{ asset('storage/' . $user->avatar_path) }}" alt="Profile" class="w-full h-full object-cover">
+                @else
+                    <span class="material-symbols-outlined text-8xl text-slate-400">face</span>
+                @endif
             </div>
-            <button class="absolute -bottom-2 -right-2 size-12 bg-primary text-white rounded-2xl shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
+            <a href="{{ route('profile') }}" class="absolute -bottom-2 -right-2 size-12 bg-primary text-white rounded-2xl shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
                 <span class="material-symbols-outlined">edit</span>
-            </button>
+            </a>
         </div>
         <div class="text-center md:text-right flex-1">
-            <h3 class="text-2xl font-black mb-2">صورتك الرمزية</h3>
-            <p class="text-slate-500 dark:text-slate-400 font-bold mb-4">اختر شخصيتك المفضلة التي تمثلك في عالم إيكو ستارز</p>
+            <h3 class="text-2xl font-black mb-2">{{ $user->name }}</h3>
+            <p class="text-slate-500 font-bold mb-4">{{ $user->email }}</p>
             <div class="flex flex-wrap justify-center md:justify-start gap-3">
-                <button class="px-6 py-2.5 bg-primary text-white font-bold rounded-xl transition-colors hover:bg-primary/90">تغيير الأفاتار</button>
-                <button class="px-6 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-xl transition-colors hover:bg-slate-200 dark:hover:bg-slate-700">إزالة</button>
+                <span class="px-4 py-2 bg-slate-50 rounded-xl text-sm font-bold text-slate-600">الهاتف: {{ $user->phone ?: 'غير مسجل' }}</span>
+                <span class="px-4 py-2 bg-slate-50 rounded-xl text-sm font-bold text-slate-600">الصف: {{ $user->grade ?: 'غير مسجل' }}</span>
             </div>
         </div>
     </section>
+
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <section class="settings-card">
             <div class="flex items-center gap-3 mb-8">
                 <span class="material-symbols-outlined text-primary">person</span>
                 <h3 class="text-xl font-black">المعلومات الشخصية</h3>
             </div>
-            <div class="space-y-6">
-                <div>
-                    <label class="block text-sm font-bold text-slate-500 mb-2">الاسم بالكامل</label>
-                    <input class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-2xl px-4 py-3.5 font-bold" type="text" value="أحمد محمد علي"/>
+            <form class="space-y-6" method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
+                @csrf
+                @method('patch')
+
+                <div class="flex items-center gap-4">
+                    <div class="size-20 rounded-3xl overflow-hidden bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
+                        @if ($user->avatar_path)
+                            <img src="{{ asset('storage/' . $user->avatar_path) }}" alt="Avatar" class="w-full h-full object-cover">
+                        @else
+                            <span class="material-symbols-outlined text-5xl text-slate-300">face</span>
+                        @endif
+                    </div>
+                    <div class="flex-1">
+                        <x-input-label for="avatar" :value="__('الصورة الشخصية')" />
+                        <x-text-input id="avatar" name="avatar" type="file" class="mt-1 block w-full" accept="image/*" />
+                        <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
+                    </div>
                 </div>
+
                 <div>
-                    <label class="block text-sm font-bold text-slate-500 mb-2">المستوى الدراسي</label>
-                    <select class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-2xl px-4 py-3.5 font-bold">
-                        <option>الصف الثالث الابتدائي</option>
-                        <option selected="">الصف الرابع الابتدائي</option>
-                        <option>الصف الخامس الابتدائي</option>
-                    </select>
+                    <x-input-label for="name" :value="__('الاسم بالكامل')" />
+                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required />
+                    <x-input-error class="mt-2" :messages="$errors->get('name')" />
                 </div>
-                <button class="w-full py-4 bg-primary text-white font-black rounded-2xl shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">حفظ التغييرات</button>
-            </div>
+
+                <div>
+                    <x-input-label for="email" :value="__('البريد الإلكتروني')" />
+                    <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required />
+                    <x-input-error class="mt-2" :messages="$errors->get('email')" />
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <x-input-label for="phone" :value="__('رقم الهاتف')" />
+                        <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $user->phone)" />
+                        <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+                    </div>
+                    <div>
+                        <x-input-label for="birth_date" :value="__('تاريخ الميلاد')" />
+                        <x-text-input id="birth_date" name="birth_date" type="date" class="mt-1 block w-full" :value="old('birth_date', optional($user->birth_date)->format('Y-m-d'))" />
+                        <x-input-error class="mt-2" :messages="$errors->get('birth_date')" />
+                    </div>
+                    <div>
+                        <x-input-label for="grade" :value="__('الصف الدراسي')" />
+                        <x-text-input id="grade" name="grade" type="text" class="mt-1 block w-full" :value="old('grade', $user->grade)" />
+                        <x-input-error class="mt-2" :messages="$errors->get('grade')" />
+                    </div>
+                    <div>
+                        <x-input-label for="parent_name" :value="__('اسم ولي الأمر')" />
+                        <x-text-input id="parent_name" name="parent_name" type="text" class="mt-1 block w-full" :value="old('parent_name', $user->parent_name)" />
+                        <x-input-error class="mt-2" :messages="$errors->get('parent_name')" />
+                    </div>
+                </div>
+
+                <div>
+                    <x-input-label for="parent_phone" :value="__('هاتف ولي الأمر')" />
+                    <x-text-input id="parent_phone" name="parent_phone" type="text" class="mt-1 block w-full" :value="old('parent_phone', $user->parent_phone)" />
+                    <x-input-error class="mt-2" :messages="$errors->get('parent_phone')" />
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <x-primary-button>{{ __('حفظ التغييرات') }}</x-primary-button>
+                    @if (session('status') === 'profile-updated')
+                        <p class="text-sm text-primary font-bold">تم الحفظ.</p>
+                    @endif
+                </div>
+            </form>
         </section>
+
         <section class="settings-card">
             <div class="flex items-center gap-3 mb-8">
                 <span class="material-symbols-outlined text-primary">lock</span>
                 <h3 class="text-xl font-black">الأمان وكلمة المرور</h3>
             </div>
-            <div class="space-y-6">
+            <form class="space-y-6" method="POST" action="{{ route('password.update') }}">
+                @csrf
+                @method('put')
                 <div>
-                    <label class="block text-sm font-bold text-slate-500 mb-2">كلمة المرور الحالية</label>
-                    <input class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-2xl px-4 py-3.5 font-bold" placeholder="••••••••" type="password"/>
+                    <x-input-label for="update_password_current_password" :value="__('كلمة المرور الحالية')" />
+                    <x-text-input id="update_password_current_password" name="current_password" type="password" class="mt-1 block w-full" />
+                    <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
                 </div>
                 <div>
-                    <label class="block text-sm font-bold text-slate-500 mb-2">كلمة المرور الجديدة</label>
-                    <input class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-2xl px-4 py-3.5 font-bold" placeholder="••••••••" type="password"/>
+                    <x-input-label for="update_password_password" :value="__('كلمة المرور الجديدة')" />
+                    <x-text-input id="update_password_password" name="password" type="password" class="mt-1 block w-full" />
+                    <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
                 </div>
-                <button class="w-full py-4 bg-primary text-white font-black rounded-2xl shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">تحديث كلمة المرور</button>
-            </div>
+                <div>
+                    <x-input-label for="update_password_password_confirmation" :value="__('تأكيد كلمة المرور')" />
+                    <x-text-input id="update_password_password_confirmation" name="password_confirmation" type="password" class="mt-1 block w-full" />
+                    <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
+                </div>
+                <div class="flex items-center gap-4">
+                    <x-primary-button>{{ __('تحديث كلمة المرور') }}</x-primary-button>
+                    @if (session('status') === 'password-updated')
+                        <p class="text-sm text-primary font-bold">تم الحفظ.</p>
+                    @endif
+                </div>
+            </form>
         </section>
     </div>
-    <section class="settings-card">
-        <div class="flex items-center gap-3 mb-8">
-            <span class="material-symbols-outlined text-primary">notifications_active</span>
-            <h3 class="text-xl font-black">إعدادات التنبيهات</h3>
-        </div>
-        <div class="space-y-4">
-            <label class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl cursor-pointer group">
-                <div class="flex items-center gap-4">
-                    <div class="size-10 bg-white dark:bg-slate-700 rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined">star</span>
-                    </div>
-                    <div>
-                        <p class="font-bold">تنبيهات الإنجازات والنجوم</p>
-                        <p class="text-xs text-slate-400 font-bold">احصل على إشعار عند فوزك بنجوم جديدة</p>
-                    </div>
-                </div>
-                <div class="relative inline-flex items-center cursor-pointer">
-                    <input checked="" class="sr-only peer" type="checkbox"/>
-                    <div class="w-12 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-[-1.5rem] rtl:peer-checked:after:translate-x-[-1.5rem] after:content-[''] after:absolute after:top-[4px] after:right-[4px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
-                </div>
-            </label>
-            <label class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl cursor-pointer group">
-                <div class="flex items-center gap-4">
-                    <div class="size-10 bg-white dark:bg-slate-700 rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined">menu_book</span>
-                    </div>
-                    <div>
-                        <p class="font-bold">تذكير بالدروس اليومية</p>
-                        <p class="text-xs text-slate-400 font-bold">رسائل تشجيعية للبدء في دروسك</p>
-                    </div>
-                </div>
-                <div class="relative inline-flex items-center cursor-pointer">
-                    <input class="sr-only peer" type="checkbox"/>
-                    <div class="w-12 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-[-1.5rem] rtl:peer-checked:after:translate-x-[-1.5rem] after:content-[''] after:absolute after:top-[4px] after:right-[4px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
-                </div>
-            </label>
-            <label class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl cursor-pointer group">
-                <div class="flex items-center gap-4">
-                    <div class="size-10 bg-white dark:bg-slate-700 rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined">campaign</span>
-                    </div>
-                    <div>
-                        <p class="font-bold">الأخبار والتحديثات</p>
-                        <p class="text-xs text-slate-400 font-bold">تعرف على التحديثات الجديدة في إيكو ستارز</p>
-                    </div>
-                </div>
-                <div class="relative inline-flex items-center cursor-pointer">
-                    <input checked="" class="sr-only peer" type="checkbox"/>
-                    <div class="w-12 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-[-1.5rem] rtl:peer-checked:after:translate-x-[-1.5rem] after:content-[''] after:absolute after:top-[4px] after:right-[4px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
-                </div>
-            </label>
-        </div>
-    </section>
 </div>
 @endsection

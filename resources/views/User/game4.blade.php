@@ -133,6 +133,27 @@ h3 {
 #exitBtn:hover {
     background: #dc2626;
 }
+
+#gameOverScreen {
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 44, 2, 0.75);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+}
+
+#gameOverScreen .panel {
+    background: rgba(255,255,255,0.96);
+    border-radius: 28px;
+    padding: 34px;
+    max-width: 460px;
+    width: calc(100% - 30px);
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.22);
+}
 </style>
 </head>
 
@@ -157,15 +178,34 @@ h3 {
 
 <button id="exitBtn">🚪 خروج للألعاب</button>
 
+<div id="gameOverScreen">
+    <div class="panel">
+        <div id="resultIcon" class="material-symbols-outlined" style="font-size:5rem;color:#16a34a;margin-bottom:12px;">eco</div>
+        <h2 id="resultTitle" style="font-size:2rem;font-weight:900;color:#14532d;margin-bottom:10px;">أحسنت!</h2>
+        <p id="resultScore" style="font-size:1.15rem;color:#4b5563;margin-bottom:22px;">تم إنهاء الجولة بنجاح.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <button id="restartBtn" style="padding:12px 26px;border:none;border-radius:14px;background:#22c55e;color:#fff;font-family:'Cairo';font-weight:800;cursor:pointer;">العب مرة أخرى</button>
+            <button id="backBtn" style="padding:12px 26px;border:none;border-radius:14px;background:#e5e7eb;color:#334155;font-family:'Cairo';font-weight:800;cursor:pointer;">العودة للألعاب</button>
+        </div>
+    </div>
+</div>
+
 <script>
 const gamesPageUrl = "{{ route('games') }}";
 let level = 1;
 let score = 0;
 let correctClicks = 0;
+let gameEnded = false;
 
 const game = document.getElementById("game");
 const levelText = document.getElementById("level");
 const scoreText = document.getElementById("score");
+const gameOverScreen = document.getElementById("gameOverScreen");
+const resultIcon = document.getElementById("resultIcon");
+const resultTitle = document.getElementById("resultTitle");
+const resultScore = document.getElementById("resultScore");
+const restartBtn = document.getElementById("restartBtn");
+const backBtn = document.getElementById("backBtn");
 
 const goodItems = ["🌱", "🌳", "🚲", "☀️", "♻️"];
 const badItems = ["🗑️", "🏭", "🚗", "🔥"];
@@ -175,6 +215,8 @@ function shuffle(array) {
 }
 
 function loadLevel() {
+    gameEnded = false;
+    gameOverScreen.style.display = "none";
     game.innerHTML = "";
     levelText.textContent = level;
     correctClicks = 0;
@@ -201,6 +243,7 @@ function loadLevel() {
         if (item.type === "good") {
             div.classList.add("good");
             div.onclick = () => {
+                if (gameEnded) return;
                 div.style.visibility = "hidden";
                 score += 5;
                 correctClicks++;
@@ -213,9 +256,10 @@ function loadLevel() {
         } else {
             div.classList.add("bad");
             div.onclick = () => {
+                if (gameEnded) return;
                 score -= 3;
                 scoreText.textContent = score;
-                alert("❌ دي حاجة مضرة بالبيئة");
+                showGameOver(false);
             };
         }
 
@@ -228,19 +272,29 @@ function nextLevel() {
         level++;
         loadLevel();
     } else {
-        // finished all levels: submit points and redirect to achievements
-        try {
-            const pointsInput = document.getElementById('progressPoints');
-            const form = document.getElementById('progressForm');
-            if (pointsInput && form) {
-                pointsInput.value = score;
-                form.submit();
-                return;
-            }
-        } catch (e) {
-            console.error(e);
+        showGameOver(true);
+    }
+}
+
+function showGameOver(won) {
+    gameEnded = true;
+    gameOverScreen.style.display = "flex";
+    resultIcon.textContent = won ? "eco" : "report";
+    resultIcon.style.color = won ? "#16a34a" : "#dc2626";
+    resultTitle.textContent = won ? "مبروك!" : "انتهت المحاولة";
+    resultScore.textContent = won
+        ? `أكملت كل المراحل وحصلت على ${score} نقطة.`
+        : "تم الانتقال لشاشة النهاية بعد اختيار غير صحيح.";
+
+    try {
+        const pointsInput = document.getElementById('progressPoints');
+        const form = document.getElementById('progressForm');
+        if (pointsInput && form) {
+            pointsInput.value = Math.max(score, 0);
+            form.submit();
         }
-        alert("🏆 مبروك! خلصت كل الليفلز وبقيت صديق للبيئة");
+    } catch (e) {
+        console.error(e);
     }
 }
 
@@ -248,6 +302,11 @@ document.getElementById("exitBtn").addEventListener("click", () => {
     if (confirm("هل تريد الخروج من اللعبة؟")) {
         window.location.href = gamesPageUrl;
     }
+});
+
+restartBtn.addEventListener("click", loadLevel);
+backBtn.addEventListener("click", () => {
+    window.location.href = gamesPageUrl;
 });
 
 loadLevel();

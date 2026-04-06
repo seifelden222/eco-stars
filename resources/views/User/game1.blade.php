@@ -285,12 +285,16 @@ function checkMatch() {
     } else {
       card1.classList.remove("flipped");
       card2.classList.remove("flipped");
+      endGame(false);
     }
     flippedCards = [];
   }, 800);
 }
 
 function endGame(won) {
+  if (gameEnded) {
+    return;
+  }
   gameEnded = true;
   clearInterval(timerInterval);
 
@@ -301,6 +305,11 @@ function endGame(won) {
     messageIcon.className = "material-symbols-outlined text-yellow-500 !text-8xl mb-5";
     messageTitle.textContent = "مبروك! 🎉";
     messageText.innerHTML = `أكملت اللعبة<br>في <strong>${moves}</strong> حركة وبوقت <strong>${timerEl.textContent}</strong>`;
+  } else {
+    messageIcon.textContent = "report";
+    messageIcon.className = "material-symbols-outlined text-red-500 !text-8xl mb-5";
+    messageTitle.textContent = "انتهت المحاولة";
+    messageText.textContent = "حدث خطأ في المطابقة، وتم نقلك لشاشة النهاية.";
   }
 }
 

@@ -74,6 +74,14 @@
                 </button>
             </form>
 
+            <div class="mt-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-800/60 px-4 py-3 text-right">
+                <p class="text-sm font-black text-slate-700 dark:text-slate-200">لوحة الإدارة لها صفحة دخول مستقلة.</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    إذا كنت تريد دخول الأدمن استخدم
+                    <a class="text-primary font-bold hover:underline" href="{{ url('/admin/login') }}">/admin/login</a>.
+                </p>
+            </div>
+
             <div class="mt-10 pt-8 border-t border-slate-100 dark:border-slate-800">
                 <p class="text-slate-600 dark:text-slate-400 font-bold">
                     ليس لديك حساب؟ 

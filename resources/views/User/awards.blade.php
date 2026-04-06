@@ -12,7 +12,7 @@
 
 @section('content')
 <div class="p-8 relative z-10 w-full">
-    <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 mb-10 shadow-xl border border-white dark:border-slate-700 relative overflow-hidden">
+    {{-- <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 mb-10 shadow-xl border border-white dark:border-slate-700 relative overflow-hidden">
         <div class="absolute top-0 left-0 w-full h-1.5 bg-slate-100 dark:bg-slate-700">
             <div class="h-full bg-primary w-2/3 shadow-[0_0_15px_rgba(34,197,94,0.5)]"></div>
         </div>
@@ -32,7 +32,7 @@
                 <div class="text-sm font-bold text-slate-400">التقدم نحو الرتبة التالية</div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="mb-8 flex items-center justify-between">
         <h2 class="text-2xl font-black flex items-center gap-3">
             <span class="material-symbols-outlined text-primary">military_tech</span>

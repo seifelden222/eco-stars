@@ -11,7 +11,7 @@
 @endpush
 
 @section('content')
-<div class="p-8 relative z-10 flex-1">
+<div x-data="{ openSection: 'avatars' }" class="p-8 relative z-10 flex-1">
     <div class="flex gap-4 overflow-x-auto pb-6 mb-8 scrollbar-hide">
         <button class="whitespace-nowrap px-8 py-3 bg-primary text-white font-bold rounded-2xl shadow-lg shadow-primary/20">الكل</button>
         <button class="whitespace-nowrap px-8 py-3 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold rounded-2xl border border-slate-100 dark:border-slate-700 hover:border-primary transition-all">أفاتار جديد</button>
@@ -25,9 +25,9 @@
                 <span class="material-symbols-outlined text-primary">face_6</span>
                 أفاتار جديد
             </h3>
-            <a class="text-primary font-bold text-sm hover:underline" href="#">عرض المزيد</a>
+            <button @click="openSection === 'avatars' ? openSection = '' : openSection = 'avatars'" class="text-primary font-bold text-sm hover:underline" type="button">عرض المزيد</button>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div x-show="openSection === 'avatars'" x-transition class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <div class="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 border border-slate-100 dark:border-slate-800 card-glow transition-all group">
                 <div class="aspect-square bg-slate-50 dark:bg-slate-800 rounded-[2rem] mb-6 flex items-center justify-center relative overflow-hidden">
                     <span class="material-symbols-outlined text-8xl text-slate-300 group-hover:scale-110 transition-transform">person_4</span>
@@ -63,9 +63,9 @@
                 <span class="material-symbols-outlined text-primary">apparel</span>
                 بدلات الفضاء
             </h3>
-            <a class="text-primary font-bold text-sm hover:underline" href="#">عرض المزيد</a>
+            <button @click="openSection === 'suits' ? openSection = '' : openSection = 'suits'" class="text-primary font-bold text-sm hover:underline" type="button">عرض المزيد</button>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div x-show="openSection === 'suits'" x-transition class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <div class="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 border border-slate-100 dark:border-slate-800 card-glow transition-all group">
                 <div class="aspect-square bg-orange-50 dark:bg-orange-900/20 rounded-[2rem] mb-6 flex items-center justify-center relative overflow-hidden">
                     <span class="material-symbols-outlined text-8xl text-orange-300 group-hover:scale-110 transition-transform">rocket_launch</span>
@@ -103,9 +103,9 @@
                 <span class="material-symbols-outlined text-primary">wallpaper</span>
                 خلفيات كوكبية
             </h3>
-            <a class="text-primary font-bold text-sm hover:underline" href="#">عرض المزيد</a>
+            <button @click="openSection === 'walls' ? openSection = '' : openSection = 'walls'" class="text-primary font-bold text-sm hover:underline" type="button">عرض المزيد</button>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div x-show="openSection === 'walls'" x-transition class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <div class="bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 border border-slate-100 dark:border-slate-800 card-glow transition-all group">
                 <div class="aspect-video bg-emerald-50 dark:bg-emerald-900/20 rounded-[1.5rem] mb-6 flex items-center justify-center relative overflow-hidden">
                     <span class="material-symbols-outlined text-6xl text-emerald-300 group-hover:scale-110 transition-transform">public</span>
