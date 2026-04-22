@@ -104,6 +104,31 @@
     </div>
 
     @stack('scripts')
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const input = document.getElementById("globalSearch");
+    const cards = document.querySelectorAll(".course-card");
+
+    if (!input) return;
+
+    input.addEventListener("input", () => {
+
+        const value = input.value.toLowerCase();
+
+        cards.forEach(card => {
+
+            const text = card.textContent.toLowerCase();
+
+            // إظهار أو إخفاء الكارت
+            card.style.display = text.includes(value) ? "" : "none";
+
+        });
+
+    });
+
+});
+</script>
 </body>
 
 </html>

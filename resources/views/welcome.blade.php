@@ -89,7 +89,7 @@
             <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <a href="{{ url('/') }}">
-                        <img src="{{ asset('assets/img/log.png') }}" alt="Eco Stars" style="width: 220px;">
+                        <img src="{{ asset('assets/img/log.png') }}" alt="Eco Stars" style="width: 190px;">
                     </a>
                 </div>
                 <div class="flex items-center gap-4">
@@ -142,7 +142,7 @@
                             <span class="material-symbols-outlined text-4xl text-yellow-500 fill-current">star</span>
                         </div>
                     </div>
-                    
+
                     <div class="absolute -bottom-10 -right-10 bg-white p-6 rounded-3xl shadow-xl flex items-center gap-4 z-20 border border-slate-100 card-gradient">
                         <div class="size-14 bg-primary rounded-full flex items-center justify-center text-white shadow-md">
                             <span class="material-symbols-outlined text-3xl fill-current">military_tech</span>

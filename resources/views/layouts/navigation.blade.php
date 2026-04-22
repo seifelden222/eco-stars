@@ -16,6 +16,7 @@
                     <span
                         class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
                     <input
+                        id="globalSearch"
                         class="w-full pr-12 pl-4 py-3.5 bg-white border border-slate-200 rounded-2xl shadow-sm focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm text-slate-700 placeholder:text-slate-400 transition-all"
                         placeholder="ابحث عن مغامرة جديدة..." type="text" />
                 </div>
