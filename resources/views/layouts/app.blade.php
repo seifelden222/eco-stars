@@ -91,6 +91,15 @@
                 <!-- محتوى الصفحة الرئيسي -->
                 <main class="flex-1 relative">
                     <div class="py-6 sm:py-8">
+                        @if(session('locked'))
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
+                            <div class="bg-amber-50 border-l-4 border-amber-400 text-amber-800 p-4 rounded-lg">
+                                <p class="font-bold">الصفحة مقفولة</p>
+                                <p>هذه الصفحة تحتاج <strong>{{ data_get(session('locked'), 'required_points', 0) }}</strong> نقاط. رصيدك الحالي: <strong>{{ data_get(session('locked'), 'balance', 0) }}</strong>.</p>
+                                <p class="mt-2"><a href="{{ route('achievements') }}" class="underline">عرض الإنجازات / رصيد النقاط</a></p>
+                            </div>
+                        </div>
+                        @endif
                         @yield('content')
                     </div>
                 </main>

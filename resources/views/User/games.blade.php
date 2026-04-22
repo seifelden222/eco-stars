@@ -4,6 +4,19 @@
 
 @section('content')
 <div class="max-w-6xl mx-auto p-10 relative z-10">
+    @php
+        $user = auth()->user();
+        $balance = 0;
+        if ($user) {
+            $totalEarned = $user->points()->where('type', 'earn')->sum('points');
+            $totalOther = $user->points()->where('type', '<>', 'earn')->sum('points');
+            $totalSpent = \Illuminate\Support\Facades\DB::table('child_reward')->where('user_id', $user->id)->sum('points_spent');
+            $balance = $totalEarned + $totalOther - $totalSpent;
+        }
+
+        $keys = ['required_points.game4','required_points.game5','required_points.game6'];
+        $settings = \App\Models\Setting::whereIn('key', $keys)->pluck('value','key')->toArray();
+    @endphp
     <div class="mb-12">
         <h2 class="text-3xl font-black text-slate-800 dark:text-white mb-3">اختر مغامرتك القادمة! 🚀</h2>
         <p class="text-lg text-slate-500 font-bold">العب وتعلم واجمع المزيد من النجوم لتطوير مستواك</p>
@@ -104,10 +117,20 @@
                         <span class="material-symbols-outlined !text-xl fill-current">star</span>
                         <span class="font-black">١٠٠+</span>
                     </div>
-                    <a href="{{ route('game5') }}" class="bg-primary text-white px-8 py-3 rounded-2xl font-black text-lg hover:bg-green-600 transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
-                        <span>العب الآن</span>
-                        <span class="material-symbols-outlined !text-xl">play_arrow</span>
-                    </a>
+                    @php
+                        $req = (int) data_get($settings, 'required_points.game5', 10);
+                        $locked = $balance < $req;
+                    @endphp
+                    @if($locked)
+                        <button disabled class="bg-slate-300 text-white px-8 py-3 rounded-2xl font-black text-lg transition-all shadow-sm flex items-center gap-2">
+                            <span>مقفول — يحتاج {{ $req }} نقاط</span>
+                        </button>
+                    @else
+                        <a href="{{ route('game5') }}" class="bg-primary text-white px-8 py-3 rounded-2xl font-black text-lg hover:bg-green-600 transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
+                            <span>العب الآن</span>
+                            <span class="material-symbols-outlined !text-xl">play_arrow</span>
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -129,10 +152,20 @@
                         <span class="material-symbols-outlined !text-xl fill-current">star</span>
                         <span class="font-black">٨٠+</span>
                     </div>
-                    <a href="{{ route('game4') }}" class="bg-primary text-white px-8 py-3 rounded-2xl font-black text-lg hover:bg-green-600 transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
-                        <span>العب الآن</span>
-                        <span class="material-symbols-outlined !text-xl">play_arrow</span>
-                    </a>
+                    @php
+                        $req = (int) data_get($settings, 'required_points.game4', 10);
+                        $locked = $balance < $req;
+                    @endphp
+                    @if($locked)
+                        <button disabled class="bg-slate-300 text-white px-8 py-3 rounded-2xl font-black text-lg transition-all shadow-sm flex items-center gap-2">
+                            <span>مقفول — يحتاج {{ $req }} نقاط</span>
+                        </button>
+                    @else
+                        <a href="{{ route('game4') }}" class="bg-primary text-white px-8 py-3 rounded-2xl font-black text-lg hover:bg-green-600 transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
+                            <span>العب الآن</span>
+                            <span class="material-symbols-outlined !text-xl">play_arrow</span>
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -154,10 +187,20 @@
                         <span class="material-symbols-outlined !text-xl fill-current">star</span>
                         <span class="font-black">١٥٠+</span>
                     </div>
-                    <a href="{{ route('game6') }}" class="bg-primary text-white px-8 py-3 rounded-2xl font-black text-lg hover:bg-green-600 transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
-                        <span>العب الآن</span>
-                        <span class="material-symbols-outlined !text-xl">play_arrow</span>
-                    </a>
+                    @php
+                        $req = (int) data_get($settings, 'required_points.game6', 10);
+                        $locked = $balance < $req;
+                    @endphp
+                    @if($locked)
+                        <button disabled class="bg-slate-300 text-white px-8 py-3 rounded-2xl font-black text-lg transition-all shadow-sm flex items-center gap-2">
+                            <span>مقفول — يحتاج {{ $req }} نقاط</span>
+                        </button>
+                    @else
+                        <a href="{{ route('game6') }}" class="bg-primary text-white px-8 py-3 rounded-2xl font-black text-lg hover:bg-green-600 transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
+                            <span>العب الآن</span>
+                            <span class="material-symbols-outlined !text-xl">play_arrow</span>
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

@@ -45,14 +45,15 @@ Route::middleware('auth')->group(function () {
     Route::view('/awards', 'User.awards')->name('awards');
     Route::view('/store', 'User.store')->name('store');
     Route::view('/games', 'User.games')->name('games');
-    Route::view('/lessons', 'User.lessons')->name('lessons');
+    Route::view('/lessons', 'User.lessons')->middleware('require.points:10')->name('lessons');
     Route::view('/video', 'User.video')->name('video');
     Route::view('/game/1', 'User.game1')->name('game1');
     Route::view('/game/2', 'User.game2')->name('game2');
     Route::view('/game/3', 'User.game3')->name('game3');
-    Route::view('/game/4', 'User.game4')->name('game4');
-    Route::view('/game/5', 'User.game5')->name('game5');
-    Route::view('/game/6', 'User.game6')->name('game6');
+    // use settings keys 'game4','game5','game6' so required points are configurable in `settings`
+    Route::view('/game/4', 'User.game4')->middleware('require.points:game4')->name('game4');
+    Route::view('/game/5', 'User.game5')->middleware('require.points:game5')->name('game5');
+    Route::view('/game/6', 'User.game6')->middleware('require.points:game6')->name('game6');
 
     // progress: record game results (web POST)
     Route::post('/progress', [ProgressController::class, 'store'])->name('progress.store');

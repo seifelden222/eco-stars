@@ -10,13 +10,15 @@ class AdminSeeder extends Seeder
 {
     public function run(): void
     {
-        // create a known admin for login
-        Admin::factory()->create([
-            'name' => 'Super Admin',
-            'email' => 'admin@center.com',
-            'password' => Hash::make('password'),
-            'is_active' => true,
-        ]);
+        // create or update a known admin for login (avoid duplicate on reseed)
+        Admin::updateOrCreate(
+            ['email' => 'admin@center.com'],
+            [
+                'name' => 'Super Admin',
+                'password' => Hash::make('password'),
+                'is_active' => true,
+            ]
+        );
 
         // create a few random admins
         Admin::factory()->count(3)->create();
